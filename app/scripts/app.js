@@ -9,10 +9,8 @@
  * Main module of the application.
  */
 angular
-  .module('yepinessApp', [
-    'ui.router',
-    'ui.bootstrap'
-  ])
+  .module('yepinessApp', ['ui.router'])
   .config(function($locationProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
 
   });
