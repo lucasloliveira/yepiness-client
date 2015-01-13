@@ -1,17 +1,20 @@
-'use strict';
+(function() {
+  'use strict';
 
-/**
- * @ngdoc function
- * @name yepinessApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the yepinessApp
- */
-angular.module('yepinessApp')
-  .controller('HomeCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  /**
+   * @ngdoc function
+   * @name yepinessApp.controller:MainCtrl
+   * @description
+   * # MainCtrl
+   * Controller of the yepinessApp
+   */
+  angular.module('yepinessApp')
+    .controller('HomeCtrl', Home);
+
+  function Home() {
+    var vm = this;
+
+    vm.title = 'Titulo do site';
+  }
+
+})();

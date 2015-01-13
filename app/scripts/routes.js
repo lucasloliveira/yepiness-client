@@ -1,11 +1,15 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('yepinessApp')
-  .config(function($stateProvider) {
+  angular.module('yepinessApp')
+    .config(Routes);
+
+  function Routes($stateProvider) {
     $stateProvider
       .state('home', {
         url: '/',
         templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl as home'
       });
-  });
+  };
+})();
