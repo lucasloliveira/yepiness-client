@@ -11,15 +11,11 @@
   angular.module('yepinessApp')
     .controller('LoginCtrl', Login);
 
-  Login.$inject = ['$state']
+  Login.$inject = ['$state'];
 
   function Login($state) {
     var vm = this;
-    vm.title = 'Titulo do site';
-    vm.submitLogin = submitLogin;
-
-
-    function submitLogin() {
+    vm.submitLogin = function() {
       return $state.go('home');
     };
   }

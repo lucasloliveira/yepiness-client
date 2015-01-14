@@ -10,11 +10,13 @@
    * Main module of the application.
    */
   angular
-    .module('yepinessApp', ['ui.router'])
+    .module('yepinessApp')
     .config(Config);
+
+  Config.$inject = ['$locationProvider', '$urlRouterProvider'];
 
   function Config($locationProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
-  };
+  }
 })();

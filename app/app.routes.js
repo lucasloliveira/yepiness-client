@@ -16,5 +16,5 @@
         templateUrl: 'session/login.view.html',
         controller: 'LoginCtrl as login'
       });
-  };
+  }
 })();

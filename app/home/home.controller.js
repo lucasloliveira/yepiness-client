@@ -12,14 +12,6 @@
     .controller('HomeCtrl', Home);
 
   function Home() {
-    var vm = this;
-    vm.title = 'Titulo do site';
-    vm.checkSomething = checkSomething;
-
-
-    function checkSomething() {
-      return 'ok';
-    };
   }
 
 })();
