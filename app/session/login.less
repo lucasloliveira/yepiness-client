@@ -1,0 +1,82 @@
+.header {
+  background: rgb(206, 81, 53);
+  overflow: hidden;
+  height: 20px;
+}
+
+.header-title {
+  color: rgb(206, 81, 53);
+  text-align: center;
+}
+
+.login-box {
+  margin-top: 32px;
+  padding-top: 16px;
+  border: 1px solid #eee;
+  box-shadow: 0 0 1px #eee;
+  border-radius: 1px;
+
+  input {
+    border-radius: 1px;
+    border-color: #e5e5e5;
+    padding-left: 22px;
+  }
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #A1A5AA;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #A1A5AA;
+    opacity:  1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #A1A5AA;
+    opacity:  1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #A1A5AA;
+  }
+}
+
+.login-button {
+  background: #2a5c82;
+  border-radius: 1px;
+  border: hidden;
+  color: #ffffff;
+  margin-top: 12px;
+  &.active, &:hover {
+    background: #4175af;
+    color: #ffffff;
+  }
+}
+
+.facebook-button {
+  background: #2a5c82;
+  border-radius: 1px;
+  border: hidden;
+  color: #ffffff;
+  display: block;
+  margin-top: 12px;
+  &.active, &:hover {
+    background: #4175af;
+    color: #ffffff;
+  }
+}
+
+.divider {
+  margin-top: 6px;
+  p {
+    text-align: center;
+    font-size: large;
+  }
+}
+
+.link-left {
+  display: block;
+  margin-top: 10px;
+  float: left;
+}
+.link-right {
+  display: block;
+  float: right;
+  margin-top: 10px;
+}
