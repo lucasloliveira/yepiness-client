@@ -13,8 +13,7 @@
     .module('yepinessApp')
     .config(Config);
 
-  Config.$inject = ['$locationProvider', '$urlRouterProvider'];
-
+  // @ngInject
   function Config($locationProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');

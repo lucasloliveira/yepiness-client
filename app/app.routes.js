@@ -4,6 +4,7 @@
   angular.module('yepinessApp')
     .config(Routes);
 
+  // @ngInject
   function Routes($stateProvider) {
     $stateProvider
 //      .state('home', {

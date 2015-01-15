@@ -111,7 +111,13 @@ module.exports = function (grunt) {
       dist: {
         options: {
           open: true,
-          base: '<%= yeoman.dist %>'
+          middleware: function (connect) {
+            return [
+//              require('grunt-connect-proxy/lib/utils').proxyRequest,
+//              require('connect-modrewrite')(['^[^\\.]*$ /index.html [L]']),
+              connect.static(appConfig.dist)
+            ];
+          }
         }
       }
     },
@@ -341,8 +347,8 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: '<%= yeoman.app %>',
-            src: 'app/**/*.js',
+            cwd: '<%= yeoman.target %>',
+            src: 'concat/scripts/scripts.js',
             dest: '<%= yeoman.target %>'
           }
         ]
@@ -387,7 +393,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%= yeoman.app %>/**/*.js',
-            dest: '<%= yeoman.dist %>/libs',
+            dest: '<%= yeoman.dist %>',
             rename: function(dest, src) {
               return dest + '/' + src.replace('.min', '');
             },
@@ -458,10 +464,10 @@ module.exports = function (grunt) {
     'clean:dist',
     'jshint:app',
     'less:app',
+    'autoprefixer:app',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer:app',
     'concat',
     'ngAnnotate:dist',
     'copy:dist',
@@ -473,6 +479,12 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
+
+  grunt.registerTask('start', [
+    'build',
+    'connect:dist:keepalive'
+  ]);
+
 
   grunt.registerTask('default', [
     'newer:jshint',
