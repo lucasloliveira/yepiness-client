@@ -7,11 +7,11 @@
   // @ngInject
   function Routes($stateProvider) {
     $stateProvider
-//      .state('home', {
-//        url: '/',
-//        templateUrl: 'home/home.html',
-//        controller: 'HomeCtrl as home'
-//      })
+      .state('home', {
+        url: '/home',
+        templateUrl: 'home/home.html',
+        controller: 'HomeCtrl as home'
+      })
       .state('login', {
         url: '/',
         templateUrl: 'session/login.view.html',
