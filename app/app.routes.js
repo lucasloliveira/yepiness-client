@@ -14,7 +14,7 @@
       })
       .state('login', {
         url: '/',
-        templateUrl: 'session/login.view.html',
+        templateUrl: 'session/login.html',
         controller: 'LoginCtrl as login'
       });
   }
