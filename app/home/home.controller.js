@@ -12,6 +12,16 @@
     .controller('HomeCtrl', Home);
 
   function Home() {
-  }
 
+    this.tabs = [
+      {title: "Indications Received"},
+      {title: "My Indications"}
+    ];
+
+    this.abaSelecionada = 'opa!';
+
+    this.changeTab = function(tab) {
+      this.abaSelecionada = tab.title;
+    };
+  }
 })();
