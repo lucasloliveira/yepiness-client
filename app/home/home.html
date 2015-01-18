@@ -18,14 +18,14 @@
   </div>
 
   <div class="panel col-md-offset-1 col-md-7">
-    <div class="row">
+    <div class="row indication-input">
       <input type="textarea" placeholder="Qual sua dica?">
     </div>
   </div>
 
   <div class="col-md-offset-4 col-md-7 panel indications-panel">
     <div>
-      <tabset class="">
+      <tabset>
         <tab ng-repeat="tab in home.tabs" heading="{{tab.title}}" select="home.changeTab(tab)" active="tab.active" disabled="tab.disabled">
           <div ng-include="'home/indications.html'">
           </div>
