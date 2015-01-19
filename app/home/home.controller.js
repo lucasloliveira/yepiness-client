@@ -45,6 +45,13 @@
             short: 'http://fortawesome.github.io/',
             url: 'yepin.es/13NfIj1',
             description: 'The complete set of 479 icons in Font Awesome 4.2.0'
+          },
+          {
+            title: 'Fonts Received',
+            pictureUrl: '/images/yeoman.png',
+            short: 'http://fortawesome.github.io/',
+            url: 'yepin.es/13NfIj1',
+            description: 'The complete set of 479 icons in Font Awesome 4.2.0'
           }
         ]
       }

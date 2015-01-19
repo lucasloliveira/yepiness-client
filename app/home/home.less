@@ -69,17 +69,30 @@
   .tab-content {
     padding: 18px;
   }
+}
 
-  .indications-list {
-    > h3 {
-      color: rgb(217, 67, 32);
+.indications-list {
+  > h3 {
+    color: rgb(217, 67, 32);
+  }
+
+  > div {
+    > a {
+      float: left;
     }
-    > div {
-      > a {
-        float: left;
-      }
-      background-color: #EFF1F5;
-      padding: 14px;
+    .shortUrl {
+      color: rgb(30, 88, 135);
     }
+    .longUrl {
+      color: rgb(99, 100, 102);
+    }
+
+    > p {
+      padding-top: 10px;
+    }
+    background-color: #EFF1F5;
+    color: rgb(99, 100, 102);
+    padding: 14px;
+    margin-bottom: 12px;
   }
 }
