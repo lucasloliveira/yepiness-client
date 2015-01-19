@@ -14,8 +14,8 @@
   function Home() {
 
     this.tabs = [
-      {title: "Indications Received", type: 'received'},
-      {title: "My Indications", type: 'sent'}
+      {title: 'Indications Received', type: 'received'},
+      {title: 'My Indications', type: 'sent'}
     ];
 
     this.abaSelecionada = 'opa!';

@@ -1,20 +1,40 @@
 @import "session/login.less";
 @import "home/home.less";
-//@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
-//@import url(http://fonts.googleapis.com/css?family=Quicksand);
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+@import url(http://fonts.googleapis.com/css?family=Quicksand);
 
 body {
   background: rgb(229, 233, 237);
+  font-family: 'Noto Sans';
 }
 
 .header {
-  background: rgb(206, 81, 53);
+  background-color: #DE4028;
   overflow: hidden;
   min-height: 20px;
-  > i {
+  > h2 {
+    float: left;
+  }
+  > ul {
+    list-style: none;
+    margin: 0;
     float: right;
-    color: white;
-    padding: 6px;
+    > li {
+      float: left;
+      > a {
+        text-decoration: none;
+        cursor: pointer;
+        > i {
+          display: block;
+          color: white;
+          padding-right: 16px;
+          padding-top: 12px;
+          &:hover {
+            color: #E4E4E4;
+          }
+        }
+      }
+    }
   }
 }
 
