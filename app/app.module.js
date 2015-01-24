@@ -10,5 +10,5 @@
    * Main module of the application.
    */
   angular
-    .module('yepinessApp', ['ui.router', 'ui.bootstrap']);
+    .module('yepinessApp', ['ui.router', 'ui.bootstrap', 'ng-token-auth']);
 })();

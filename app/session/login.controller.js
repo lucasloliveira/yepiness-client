@@ -12,10 +12,15 @@
     .controller('LoginCtrl', Login);
 
   // @ngInject
-  function Login($state) {
+  function Login($state, $auth) {
     var vm = this;
-    vm.submitLogin = function() {
-      return $state.go('home');
+    vm.submitLogin = function(loginForm) {
+      $auth.submitLogin(loginForm).then(function(response){
+        console.log(response);
+      }).catch(function(response) {
+        console.log(response);
+      });
+//      return $state.go('home');
     };
   }
 
