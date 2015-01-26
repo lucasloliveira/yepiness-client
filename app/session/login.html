@@ -8,9 +8,20 @@
     <input type="password" class="form-control input-lg" ng-model="loginForm.password" placeholder="Password">
     <button type="submit" class="btn btn-default col-md-12 login-button" ng-click="login.submitLogin(loginForm)">Login</button>
 
-    <div class="col-md-24">
-      <p class="link-left"><a>Create an account</a></p>
-      <p class="link-right"><a>Retrieve lost password</a></p>
+    <div class="col-md-12 social">
+      <legend class="text-muted text-center">or</legend>
+      <a class="btn btn-social-icon btn-lg btn-google-plus">
+        <i class="fa fa-google-plus"></i>
+      </a>
+
+      <a class="btn btn-social-icon btn-lg btn-facebook">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </div>
+
+    <div class="col-md-12 account-links">
+      <span><a>Create an account</a></span>
+      <span class="pull-right"><a>Retrieve lost password</a></span>
     </div>
   </div>
 </div>

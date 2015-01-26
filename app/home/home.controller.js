@@ -11,14 +11,22 @@
   angular.module('yepinessApp')
     .controller('HomeCtrl', Home);
 
-  function Home() {
+  function Home($http) {
+
+//    $http.get('https://www.airpair.com/ruby-on-rails/posts/authentication-with-angularjs-and-ruby-on-rails').success(function(response) {
+//      console.log(response);
+//    }).error(function(error) {
+//      console.log(error);
+//    });
 
     this.tabs = [
       {title: 'Indications Received', type: 'received'},
       {title: 'My Indications', type: 'sent'}
     ];
 
-    this.abaSelecionada = 'opa!';
+    this.updateYep = function(newYep) {
+      console.log(newYep);
+    };
 
     this.groupedIndicationsSent = [
       {

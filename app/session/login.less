@@ -13,6 +13,18 @@
   box-shadow: 0 0 1px #eee;
   border-radius: 1px;
 
+  .social {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .account-links {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0px;
+  }
+
   input {
     border-radius: 1px;
     border-color: #e5e5e5;
@@ -35,14 +47,18 @@
 }
 
 .login-button {
-  background: #2a5c82;
-  border-radius: 1px;
-  border: hidden;
-  color: #ffffff;
-  margin-top: 12px;
-  &.active, &:hover {
-    background: #4175af;
+
+  &,
+  &:focus {
+    background: #2a5c82;
+    border-radius: 1px;
+    border: hidden;
     color: #ffffff;
+    margin-top: 12px;
+    &:active, &:hover {
+      background: #4175af;
+      color: #ffffff;
+    }
   }
 }
 
@@ -65,15 +81,4 @@
     text-align: center;
     font-size: large;
   }
-}
-
-.link-left {
-  display: block;
-  margin-top: 10px;
-  float: left;
-}
-.link-right {
-  display: block;
-  float: right;
-  margin-top: 10px;
 }

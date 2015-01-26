@@ -17,10 +17,10 @@
     vm.submitLogin = function(loginForm) {
       $auth.submitLogin(loginForm).then(function(response){
         console.log(response);
+        $state.go('home');
       }).catch(function(response) {
         console.log(response);
       });
-//      return $state.go('home');
     };
   }
 
