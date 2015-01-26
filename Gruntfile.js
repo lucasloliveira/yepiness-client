@@ -61,11 +61,41 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/**/*.html',
           '<%= yeoman.app %>/**/*.js',
           '<%= yeoman.target %>/**/*.css',
+          '<%= yeoman.target %>/**/*.js',
           '<%= yeoman.app %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
-//          '<%= yeoman.app %>/{,*/}*.html',
-//          '.tmp/styles/{,*/}*.css',
-//          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      }
+    },
+
+    ngconstant: {
+      // Options for all targets
+      options: {
+        space: '  ',
+        wrap: '"use strict";\n\n {%= __ngModule %}',
+        name: 'config'
+      },
+      // Environment targets
+      development: {
+        options: {
+          dest: '<%= yeoman.target %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            apiEndpoint: 'http://localhost:3000/api'
+          }
+        }
+      },
+      production: {
+        options: {
+          dest: '<%= yeoman.target %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'production',
+            apiEndpoint: 'http://yepiness.herokuapp.com/api'
+          }
+        }
       }
     },
 
@@ -83,13 +113,13 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
               ),
               require('connect-modrewrite')(['^[^\\.]*$ /index.html [L]']),
-              connect.static(appConfig.app)
+              connect.static(appConfig.app),
+              connect.static(appConfig.target)
             ];
           }
         }
@@ -99,13 +129,13 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
               connect.static('test'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
               ),
-              connect.static(appConfig.app)
+              connect.static(appConfig.app),
+              connect.static(appConfig.target)
             ];
           }
         }
@@ -148,17 +178,6 @@ module.exports = function (grunt) {
     clean: {
       app:['<%= yeoman.target %>'],
       dist: ['<%= yeoman.target %>', '<%= yeoman.dist %>']
-//      dist: {
-//        files: [{
-//          dot: true,
-//          src: [
-//            '.tmp',
-//            '<%= yeoman.dist %>/{,*/}*',
-//            '!<%= yeoman.dist %>/.git{,*/}*'
-//          ]
-//        }]
-//      },
-//      server: '.tmp'
     },
 
     // Settings for less
@@ -382,7 +401,13 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        }]
+        }, {
+            expand: true,
+            dot: true,
+            cwd: 'bower_components/font-awesome',
+            src: ['fonts/*.*'],
+            dest: '<%= yeoman.dist %>'
+          }]
       },
       styles: {
         expand: true,
@@ -440,6 +465,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:app',
+      'ngconstant:development',
       'less:app',
       'wiredep',
       'concurrent:server',
@@ -464,6 +490,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:production',
     'jshint:app',
     'less:app',
     'autoprefixer:app',

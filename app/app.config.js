@@ -14,12 +14,12 @@
     .config(Config);
 
   // @ngInject
-  function Config($locationProvider, $urlRouterProvider, $authProvider) {
+  function Config($locationProvider, $urlRouterProvider, $authProvider, ENV) {
     $locationProvider.html5Mode(true).hashPrefix('!');
     $urlRouterProvider.otherwise('/');
 
     $authProvider.configure({
-      apiUrl: 'http://localhost:3000/api'
+      apiUrl: ENV.apiEndpoint
     });
   }
 })();

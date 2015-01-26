@@ -13,7 +13,8 @@
 
   function Home($http) {
 
-//    $http.get('https://www.airpair.com/ruby-on-rails/posts/authentication-with-angularjs-and-ruby-on-rails').success(function(response) {
+//    $http.get('https://www.airpair.com/ruby-on-rails/posts/authentication
+// -with-angularjs-and-ruby-on-rails').success(function(response) {
 //      console.log(response);
 //    }).error(function(error) {
 //      console.log(error);
