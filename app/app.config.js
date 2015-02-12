@@ -19,7 +19,10 @@
     $urlRouterProvider.otherwise('/');
 
     $authProvider.configure({
-      apiUrl: ENV.apiEndpoint
+      apiUrl: ENV.apiEndpoint,
+      authProviderPaths: {
+        facebook: '/auth/facebook'
+      }
     });
   }
 })();

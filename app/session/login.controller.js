@@ -22,6 +22,14 @@
         console.log(response);
       });
     };
+
+    vm.facebookLogin = function() {
+      $auth.authenticate('facebook').then(function(resp) {
+        console.log(resp);
+      }).catch(function(resp) {
+        console.log(resp);
+      });
+    }
   }
 
 })();
