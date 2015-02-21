@@ -82,7 +82,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'http://localhost:3000/api'
+            apiEndpoint: 'http://localhost:3000'
           }
         }
       },
@@ -93,7 +93,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://yepiness.herokuapp.com/api'
+            apiEndpoint: 'http://yepiness.herokuapp.com'
           }
         }
       }
