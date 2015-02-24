@@ -66,10 +66,15 @@
               url: $scope.yepUrl
             }
           }).success(function(response){
-            console.log(response)
+            $scope.yepContent = response;
           });
         }
       }
+    };
+
+    $scope.removeYep = function() {
+      $scope.yepContent = undefined;
+      $scope.yepUrl = undefined;
     };
 
     $scope.changeTab = function(tab) {
