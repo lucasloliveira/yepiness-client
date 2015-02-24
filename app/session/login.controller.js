@@ -25,7 +25,8 @@
 
     vm.facebookLogin = function() {
       $auth.authenticate('facebook').then(function(resp) {
-        console.log(resp);
+
+        $state.go('home');
       }).catch(function(resp) {
         console.log(resp);
       });
