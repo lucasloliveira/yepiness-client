@@ -11,25 +11,14 @@
   angular.module('yepinessApp')
     .controller('HomeCtrl', Home);
 
-  function Home($http, ipCookie) {
+  function Home($scope, $http, ENV) {
 
-//    $http.get('https://www.airpair.com/ruby-on-rails/posts/authentication
-// -with-angularjs-and-ruby-on-rails').success(function(response) {
-//      console.log(response);
-//    }).error(function(error) {
-//      console.log(error);
-//    });
-
-    this.tabs = [
+    $scope.tabs = [
       {title: 'Indications Received', type: 'received'},
       {title: 'My Indications', type: 'sent'}
     ];
 
-    this.updateYep = function(newYep) {
-      console.log(newYep);
-    };
-
-    this.groupedIndicationsSent = [
+    $scope.groupedIndicationsSent = [
       {
         date: 'Saturday 8th June',
         indications: [
@@ -44,7 +33,7 @@
       }
     ];
 
-    this.groupedIndicationsReceived = [
+    $scope.groupedIndicationsReceived = [
       {
         date: 'Saturday 8th June',
         indications: [
@@ -66,7 +55,24 @@
       }
     ];
 
-    this.changeTab = function(tab) {
+    $scope.updateYep = function(newYep) {
+      if($scope.yepUrl === undefined) {
+        var regexToken = /(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)|((mailto:)?[_.\w-]+@([\w][\w\-]+\.)+[a-zA-Z]{2,3})/g;
+        var urls = newYep.match(regexToken);
+        if(urls !== null && urls.length > 0) {
+          $scope.yepUrl = urls[0];
+          $http.get(ENV.apiEndpoint + '/api/v1/crawl', {
+            params: {
+              url: $scope.yepUrl
+            }
+          }).success(function(response){
+            console.log(response)
+          });
+        }
+      }
+    };
+
+    $scope.changeTab = function(tab) {
       this.abaSelecionada = tab.title;
       if (tab.type === 'received') {
         this.groupedIndications = this.groupedIndicationsReceived;
@@ -75,8 +81,8 @@
       }
     };
 
-    this.getUser = function() {
-      console.log(ipCookie('userId'));
-    }
+    $http.get(ENV.apiEndpoint + '/api/v1/user/friends/count').success(function(resp){
+      $scope.user.friendsCount = resp;
+    });
   }
 })();

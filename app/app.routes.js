@@ -10,12 +10,12 @@
       .state('home', {
         url: '/home',
         templateUrl: 'home/home.html',
-        controller: 'HomeCtrl as home'
+        controller: 'HomeCtrl'
       })
       .state('login', {
         url: '/',
         templateUrl: 'session/login.html',
-        controller: 'LoginCtrl as login'
+        controller: 'LoginCtrl'
       });
   }
 })();
