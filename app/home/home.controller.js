@@ -11,7 +11,7 @@
   angular.module('yepinessApp')
     .controller('HomeCtrl', Home);
 
-  function Home($http) {
+  function Home($http, ipCookie) {
 
 //    $http.get('https://www.airpair.com/ruby-on-rails/posts/authentication
 // -with-angularjs-and-ruby-on-rails').success(function(response) {
@@ -74,5 +74,9 @@
         this.groupedIndications = this.groupedIndicationsSent;
       }
     };
+
+    this.getUser = function() {
+      console.log(ipCookie('userId'));
+    }
   }
 })();
