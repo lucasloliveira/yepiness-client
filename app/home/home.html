@@ -25,14 +25,14 @@
       <input type="textarea" placeholder="Qual sua dica?" ng-model="newYep" ng-change="updateYep(newYep)">
       <div class="media yep-content" ng-show="yepContent">
         <a class="pull-right" ng-click="removeYep()"><i class="fa fa-close"></i></a>
-        <div class="media pull-left">
+        <div class="pull-left">
           <a href="#">
             <img class="media-object yep-image" ng-src="{{yepContent.image}}" alt="...">
           </a>
         </div>
-        <div class="media-body">
+        <div>
           <h4 class="media-heading">{{yepContent.title}}</h4>
-          {{yepContent.description}}
+          <p class="media-content col-md-8">{{yepContent.description}}</p>
         </div>
       </div>
       <div>

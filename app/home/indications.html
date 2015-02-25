@@ -1,8 +1,7 @@
 <div class="indications-list" ng-repeat="group in groupedIndications">
   <h3>{{group.date}}</h3>
 
-  <div ng-repeat="indication in group.indications">
-    <!--<div class="indication-content">-->
+  <div class="indication" ng-repeat="indication in group.indications">
     <a>
       <img ng-src="{{indication.pictureUrl}}" alt="...">
     </a>
@@ -15,6 +14,5 @@
 
       <p>{{indication.description}}</p>
     </div>
-    <!--</div>-->
   </div>
 </div>

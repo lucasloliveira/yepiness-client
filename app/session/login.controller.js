@@ -12,9 +12,8 @@
     .controller('LoginCtrl', Login);
 
   // @ngInject
-  function Login($state, $auth) {
-    var vm = this;
-    vm.submitLogin = function(loginForm) {
+  function Login($scope, $state, $auth) {
+    $scope.submitLogin = function(loginForm) {
       $auth.submitLogin(loginForm).then(function(response){
         console.log(response);
         $state.go('home');
@@ -23,7 +22,7 @@
       });
     };
 
-    vm.facebookLogin = function() {
+    $scope.facebookLogin = function() {
       $auth.authenticate('facebook').then(function(resp) {
         console.log(resp);
         $state.go('home');
