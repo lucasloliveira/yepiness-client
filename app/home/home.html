@@ -22,21 +22,28 @@
 
   <div class="panel col-md-offset-1 col-md-7">
     <div class="indication-input">
-      <input type="textarea" placeholder="Qual sua dica?" ng-model="newYep" ng-change="updateYep(newYep)">
-      <div class="media yep-content" ng-show="yepContent">
+      <textarea msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
+      </textarea>
+      <div class="media indication-content" ng-show="yepContent">
         <a class="pull-right" ng-click="removeYep()"><i class="fa fa-close"></i></a>
         <div class="pull-left">
           <a href="#">
-            <img class="media-object yep-image" ng-src="{{yepContent.image}}" alt="...">
+            <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}" alt="...">
           </a>
         </div>
-        <div>
-          <h4 class="media-heading">{{yepContent.title}}</h4>
-          <p class="media-content col-md-8">{{yepContent.description}}</p>
+        <div class="media-body">
+          <h4 class="media-heading">{{newYep.title}}</h4>
+          <p class="media-content col-md-8">{{newYep.description}}</p>
         </div>
       </div>
-      <div>
-        <button class="btn btn-md" style="float:right;">Publicar</button>
+      <div class="indication-actions clearfix">
+        <div class="friend-actions pull-left">
+          <i class="fa fa-user-plus fa-1x"></i>
+          <!--<img ng-show="newYep.friends" ng-repeat="friend in newYep.friends" class="friend" ng-src="{{friend.image}}" />-->
+        </div>
+        <div class="publish pull-right">
+          <button class="btn btn-sm publish" ng-click="create()">Publicar</button>
+        </div>
       </div>
     </div>
   </div>

@@ -21,44 +21,74 @@
 }
 
 .indication-input {
-  > input {
+  > textarea {
     width: 100%;
-    border-width: 0px;
-    border-color: #ce5135;
+    border-width: 0;
     margin: 0px;
     padding: 8px;
+    resize: none;
     &:focus {
-      outline-color: #ce5135;
-      outline-width: 1px;
+      outline-width: 0;
     }
   }
 
-  .yep-content {
+  .indication-content {
     background: #EFF1F5;
+    padding: 4px;
 
-    .yep-image {
+    .indication-image {
       max-height: 90px;
       max-width: 90px;
       padding: 6px;
     }
 
     .close {
-
       padding: 2px;
-
     }
 
-    .media-heading {
-      color: #DE4028;
-      font-size: 14px;
-      padding-top: 5px;
-    }
+    .media-body {
+      .media-heading {
+        color: #DE4028;
+        font-size: 14px;
+        padding-top: 5px;
+      }
 
-    .media-content {
-      font-size: 12px;
-      padding: 0;
+      .media-content {
+        font-size: 12px;
+        padding: 0;
+      }
     }
   }
+
+  .indication-actions {
+    margin-top: 4px;
+    vertical-align: middle;
+
+    .friend-actions {
+      display: inline;
+      .fa {
+        cursor: pointer;
+      }
+
+      .friend {
+
+      }
+    }
+    .publish {
+      display: inline;
+
+      > button {
+        margin-right: 0;
+        border-radius: 0;
+        border: 0;
+        background-color: rgb(42, 92, 130);
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: lighter;
+      }
+    }
+  }
+
 }
 
 .indications-panel {

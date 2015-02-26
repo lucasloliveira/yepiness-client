@@ -55,18 +55,35 @@
       }
     ];
 
+    $scope.create = function(){
+      $http.post(ENV.apiEndpoint + '/api/v1/user/yep', {
+        newYep: $scope.newYep
+      }).success(function(response){
+        console.log(response);
+      }).error(function(response){
+        console.log(response);
+      })
+    };
+
     $scope.updateYep = function(newYep) {
-      if($scope.yepUrl === undefined) {
+      if($scope.yepContent === undefined) {
         var regexToken = /(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)|((mailto:)?[_.\w-]+@([\w][\w\-]+\.)+[a-zA-Z]{2,3})/g;
         var urls = newYep.match(regexToken);
         if(urls !== null && urls.length > 0) {
-          $scope.yepUrl = urls[0];
           $http.get(ENV.apiEndpoint + '/api/v1/crawl', {
             params: {
-              url: $scope.yepUrl
+              yepContent: newYep
             }
           }).success(function(response){
             $scope.yepContent = response;
+            $scope.newYep.title = response.title;
+            $scope.newYep.url = response.uri;
+            $scope.newYep.description = response.description;
+            $scope.newYep.image = response.images.length > 0 ? response.images[0] : '';
+            //TODO: Rename imageUrl
+            $scope.newYep.imageUrl = $scope.newYep.image;
+          }).error(function(){
+            $scope.removeYep();
           });
         }
       }
@@ -74,7 +91,6 @@
 
     $scope.removeYep = function() {
       $scope.yepContent = undefined;
-      $scope.yepUrl = undefined;
     };
 
     $scope.changeTab = function(tab) {

@@ -14,20 +14,16 @@
   // @ngInject
   function Login($scope, $state, $auth) {
     $scope.submitLogin = function(loginForm) {
-      $auth.submitLogin(loginForm).then(function(response){
-        console.log(response);
+      $auth.submitLogin(loginForm).then(function(){
         $state.go('home');
       }).catch(function(response) {
-        console.log(response);
       });
     };
 
     $scope.facebookLogin = function() {
-      $auth.authenticate('facebook').then(function(resp) {
-        console.log(resp);
+      $auth.authenticate('facebook').then(function() {
         $state.go('home');
       }).catch(function(resp) {
-        console.log(resp);
       });
     };
   }
