@@ -62,7 +62,7 @@
         console.log(response);
       }).error(function(response){
         console.log(response);
-      })
+      });
     };
 
     $scope.updateYep = function(newYep) {
