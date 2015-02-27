@@ -76,12 +76,11 @@
             }
           }).success(function(response){
             $scope.yepContent = response;
+
             $scope.newYep.title = response.title;
-            $scope.newYep.url = response.uri;
             $scope.newYep.description = response.description;
+            $scope.newYep.url = response.uri;
             $scope.newYep.image = response.images.length > 0 ? response.images[0] : '';
-            //TODO: Rename imageUrl
-            $scope.newYep.imageUrl = $scope.newYep.image;
           }).error(function(){
             $scope.removeYep();
           });
@@ -91,6 +90,10 @@
 
     $scope.removeYep = function() {
       $scope.yepContent = undefined;
+      $scope.newYep.title = undefined;
+      $scope.newYep.url = undefined;
+      $scope.newYep.description = undefined;
+      $scope.newYep.image = undefined;
     };
 
     $scope.changeTab = function(tab) {

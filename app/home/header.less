@@ -1,31 +1,18 @@
 .header {
   background-color: #DE4028;
-  overflow: hidden;
   min-height: 20px;
 
-  >div {
-    > h2 {
-      float: left;
+  .yep-header {
+    vertical-align: middle;
+
+    .open {
+      background-color: #008000;
     }
-    > ul {
-      list-style: none;
-      margin: 0;
-      float: right;
-      > li {
-        float: left;
-        > a {
-          text-decoration: none;
-          cursor: pointer;
-          > i {
-            display: block;
-            color: white;
-            padding-right: 16px;
-            padding-top: 12px;
-            &:hover {
-              color: #E4E4E4;
-            }
-          }
-        }
+
+    .options {
+      color: white;
+      &:focus, &:hover {
+        color: #F0F0F0;
       }
     }
   }
