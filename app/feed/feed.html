@@ -1,0 +1,42 @@
+<div class="home-container container" ng-controller="FeedCtrl">
+  <div class="panel col-md-2 avatar-box">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="avatar" ng-src="{{user.image}}">
+      </div>
+      <div class="col-md-6">
+        <h5 class="avatar-box-label">{{user.name}}</h5>
+        <h6 class="avatar-box-label"><a>{{user.friendsCount}} friends</a></h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel col-md-offset-1 col-md-7">
+    <div class="indication-input">
+      <textarea msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
+      </textarea>
+      <div class="media indication-content" ng-show="yepContent">
+        <a class="pull-right" ng-click="removeYep()"><i class="fa fa-close"></i></a>
+        <div class="pull-left">
+          <a href="#">
+            <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}" alt="...">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.title}}</a></h4>
+          <p class="media-content col-md-8">{{newYep.description}}</p>
+        </div>
+      </div>
+      <div class="indication-actions clearfix">
+        <div class="friend-actions pull-left">
+          <i class="fa fa-user-plus fa-1x"></i>
+        </div>
+        <div class="publish pull-right">
+          <button class="btn btn-sm publish" ng-click="create()">Publicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-include="'feed/yeps/yeps.html'" />
+</div>

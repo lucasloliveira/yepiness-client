@@ -1,0 +1,27 @@
+<div class="panel col-md-offset-3 col-md-7 indications-panel" ng-controller="YepCtrl">
+  <div>
+    <tabset>
+      <tab ng-repeat="tab in tabs" heading="{{tab.title}}" select="changeTab(tab)" active="tab.active"
+           disabled="tab.disabled">
+        <div class="indications-list" ng-repeat="group in groupedIndications">
+          <h3>{{group.date}}</h3>
+
+          <div class="indication" ng-repeat="indication in group.indications">
+            <a>
+              <img ng-src="{{indication.pictureUrl}}" alt="...">
+            </a>
+
+            <i class="fa fa-close"></i>
+
+            <div>
+              <h4 class="media-heading">{{indication.title}}</h4>
+              <span class="shortUrl">{{indication.short}}</span><span class="longUrl"> ({{indication.url}})</span>
+
+              <p>{{indication.description}}</p>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>

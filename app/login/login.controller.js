@@ -3,16 +3,16 @@
 
   /**
    * @ngdoc function
-   * @name yepinessApp.controller:HomeCtrl
+   * @name yepinessApp.controller:LoginCtrl
    * @description
-   * # HomeCtrl
+   * # LoginCtrl
    * Controller of the yepinessApp
    */
   angular.module('yepinessApp')
-    .controller('HomeCtrl', Home);
+    .controller('LoginCtrl', Login);
 
   // @ngInject
-  function Home() {
+  function Login() {
 
   }
 

@@ -8,13 +8,13 @@
   function Routes($stateProvider) {
     $stateProvider
       .state('home', {
-        url: '/home',
+        url: '/',
         templateUrl: 'home/home.html',
-        controller: 'HomeCtrl'
+        controller: 'FeedCtrl'
       })
       .state('login', {
-        url: '/',
-        templateUrl: 'session/login.html',
+        url: '/login',
+        templateUrl: 'login/login.html',
         controller: 'LoginCtrl'
       });
   }
