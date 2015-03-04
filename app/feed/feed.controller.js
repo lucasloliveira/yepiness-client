@@ -11,12 +11,12 @@
   angular.module('yepinessApp')
     .controller('FeedCtrl', Feed);
 
-  function Feed($scope, User, Yep, Crawler) {
+  function Feed($scope, User, YepService, Crawler) {
 
     $scope.current = 'feed/feed.html';
 
     $scope.create = function(){
-      Yep.create($scope.newYep).success(function(response){
+      YepService.create($scope.newYep).success(function(response){
         console.log(response);
       }).error(function(response){
         console.log(response);

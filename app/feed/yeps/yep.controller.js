@@ -11,7 +11,7 @@
   angular.module('yepinessApp')
     .controller('YepCtrl', Yep);
 
-  function Yep($scope) {
+  function Yep($scope, YepService) {
 
     $scope.current = 'feed/feed.html';
 
@@ -20,42 +20,23 @@
       {title: 'My Indications', type: 'sent'}
     ];
 
-    $scope.groupedIndicationsSent = [
-      {
-        date: 'Saturday 8th June',
-        indications: [
-          {
-            title: 'Font Awesome Sent',
-            pictureUrl: '/images/yeoman.png',
-            url: 'http://fortawesome.github.io/',
-            short: 'yepin.es/13NfIj1',
-            description: 'The complete set of 479 icons in Font Awesome 4.2.0'
-          }
-        ]
-      }
-    ];
+    YepService.sent().success(function(response) {
+      $scope.groupedIndicationsSent = [
+        {
+          date: 'Saturday 8th June',
+          indications: response
+        }
+      ]
+    });
 
-    $scope.groupedIndicationsReceived = [
-      {
-        date: 'Saturday 8th June',
-        indications: [
-          {
-            title: 'Fonts Received',
-            pictureUrl: '/images/yeoman.png',
-            url: 'http://fortawesome.github.io/',
-            short: 'yepin.es/13NfIj1',
-            description: 'The complete set of 479 icons in Font Awesome 4.2.0'
-          },
-          {
-            title: 'Fonts Received',
-            pictureUrl: '/images/yeoman.png',
-            url: 'http://fortawesome.github.io/',
-            short: 'yepin.es/13NfIj1',
-            description: 'The complete set of 479 icons in Font Awesome 4.2.0'
-          }
-        ]
-      }
-    ];
+    YepService.received().success(function(response) {
+      $scope.groupedIndicationsReceived = [
+        {
+          date: 'Saturday 8th June',
+          indications: response
+        }
+      ]
+    });
 
     $scope.changeTab = function(tab) {
       this.abaSelecionada = tab.title;
