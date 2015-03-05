@@ -18,14 +18,23 @@
     $scope.create = function(){
       YepService.create($scope.newYep).success(function(response){
         var createdDate = new Date(response.created_at).format('{Weekday} {d} {Month}, {yyyy}', 'pt');
+        var found = false;
         $scope.groupedIndicationsSent.forEach(function(grouped){
           if(grouped.date === createdDate) {
+            found = true;
             grouped.yeps.push(response);
             grouped.yeps = grouped.yeps.sortBy(function(yep){
               return new Date(yep.created_at).getTime();
             }, true);
           }
         });
+        if(!found) {
+          $scope.groupedIndicationsSent.push({
+            date: createdDate,
+            yeps: [response]
+          })
+        }
+
         $scope.newYep = undefined;
         $scope.yepContent = undefined;
       }).error(function(response){
