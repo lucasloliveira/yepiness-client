@@ -90,7 +90,7 @@
         yeps.push({
           date: key,
           yeps: groupedYeps[key]
-        })
+        });
       });
       return yeps;
     };
@@ -101,7 +101,7 @@
     };
 
     $scope.populateYeps = function() {
-      if($scope.abaSelecionada == 'received') {
+      if($scope.abaSelecionada === 'received') {
         $scope.groupedIndications = $scope.groupedIndicationsReceived;
       } else {
         $scope.groupedIndications = $scope.groupedIndicationsSent;
