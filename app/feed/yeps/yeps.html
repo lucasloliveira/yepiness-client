@@ -5,20 +5,23 @@
            disabled="tab.disabled">
         <div class="indications-list" ng-repeat="group in groupedIndications">
           <h3>{{group.date}}</h3>
+          <div class="media indication-content" ng-repeat="indication in group.yeps">
+            <div class="clearfix">
+              <a class="pull-right" ng-click="removeYep()"><i class="media-close fa fa-close"></i></a>
 
-          <div class="indication" ng-repeat="indication in group.indications">
-            <a>
-              <img ng-src="{{indication.image}}" alt="...">
-            </a>
+              <div class="media-image pull-left">
+                <a href="#">
+                  <img ng-show="indication.image" class="media-object indication-image" ng-src="{{indication.image}}">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading"><a ng-href="{{indication.url}}" target="_blank">{{indication.title}}</a></h4>
+                <h6 class="url"><a ng-href="{{indication.url}}" target="_blank">{{indication.url}}</a></h6>
 
-            <i class="fa fa-close"></i>
-
-            <div>
-              <h4 class="media-heading">{{indication.title}}</h4>
-              <span class="shortUrl">{{indication.short}}</span><span class="longUrl"> ({{indication.url}})</span>
-
-              <p>{{indication.description}}</p>
+                <p class="media-description col-md-12">{{indication.description}}</p>
+              </div>
             </div>
+            <p class="media-content col-md-24">{{indication.content}}</p>
           </div>
         </div>
       </tab>

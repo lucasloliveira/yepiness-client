@@ -16,17 +16,24 @@
       <textarea msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
       </textarea>
       <div class="media indication-content" ng-show="yepContent">
-        <a class="pull-right" ng-click="removeYep()"><i class="fa fa-close"></i></a>
-        <div class="pull-left">
-          <a href="#">
-            <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}" alt="...">
-          </a>
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.title}}</a></h4>
-          <p class="media-content col-md-8">{{newYep.description}}</p>
+        <div class="clearfix">
+          <a class="pull-right" ng-click="removeYep()"><i class="media-close fa fa-close"></i></a>
+
+          <div class="media-image pull-left">
+            <a href="#">
+              <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}"
+                   alt="...">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.title}}</a></h4>
+            <h6 class="url"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.url}}</a></h6>
+
+            <p class="media-description col-md-12">{{newYep.description}}</p>
+          </div>
         </div>
       </div>
+
       <div class="indication-actions clearfix">
         <div class="friend-actions pull-left">
           <i class="fa fa-user-plus fa-1x"></i>

@@ -21,22 +21,26 @@
     ];
 
     YepService.sent().success(function(response) {
-      $scope.groupedIndicationsSent = [
-        {
-          date: 'Saturday 8th June',
-          indications: response
-        }
-      ]
+      $scope.groupedIndicationsSent = groupYeps(response);
     });
 
     YepService.received().success(function(response) {
-      $scope.groupedIndicationsReceived = [
-        {
-          date: 'Saturday 8th June',
-          indications: response
-        }
-      ]
+      $scope.groupedIndicationsReceived = groupYeps(response);
     });
+
+    var groupYeps = function(list) {
+      var yeps = [];
+      var groupedYeps = list.groupBy(function(yep) {
+        return new Date(yep.created_at).format('{Weekday} {d} {Month}, {yyyy}', 'pt');
+      });
+      angular.forEach(Object.keys(groupedYeps), function(key) {
+        yeps.push({
+          date: key,
+          yeps: groupedYeps[key]
+        })
+      });
+      return yeps;
+    };
 
     $scope.changeTab = function(tab) {
       this.abaSelecionada = tab.title;
