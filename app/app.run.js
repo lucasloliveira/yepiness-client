@@ -5,7 +5,7 @@
     .run(Run);
 
   // @ngInject
-  function Run($rootScope, $state) {
+  function Run($rootScope, $auth, $state) {
 
     $rootScope.$on('auth:validation-success', function() {
       loggedSuccess();
@@ -21,6 +21,12 @@
 
     $rootScope.$on('auth:logout-success', function(ev) {
       logout();
+    });
+
+    $rootScope.$on('$locationChangeSuccess', function() {
+      $auth.validateUser().catch(function () {
+        $state.go('login');
+      });
     });
 
     var loggedSuccess = function() {

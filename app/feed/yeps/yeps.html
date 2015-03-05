@@ -2,7 +2,7 @@
   <div>
     <tabset>
       <tab ng-repeat="tab in tabs" heading="{{tab.title}}" select="changeTab(tab)" active="tab.active"
-           disabled="tab.disabled">
+           disabled="tab.disabled" class="pull-right">
         <div class="indications-list" ng-repeat="group in groupedIndications">
           <h3>{{group.date}}</h3>
           <div class="media indication-content" ng-repeat="indication in group.yeps">

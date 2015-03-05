@@ -11,7 +11,7 @@
   angular.module('yepinessApp')
     .controller('YepCtrl', Yep);
 
-  function Yep($scope, YepService) {
+  function Yep($scope, $auth, $state, YepService) {
 
     $scope.current = 'feed/feed.html';
 
@@ -22,10 +22,12 @@
 
     YepService.sent().success(function(response) {
       $scope.groupedIndicationsSent = groupYeps(response);
+      $scope.populateYeps();
     });
 
     YepService.received().success(function(response) {
       $scope.groupedIndicationsReceived = groupYeps(response);
+      $scope.populateYeps();
     });
 
     var groupYeps = function(list) {
@@ -43,11 +45,15 @@
     };
 
     $scope.changeTab = function(tab) {
-      this.abaSelecionada = tab.title;
-      if (tab.type === 'received') {
-        this.groupedIndications = this.groupedIndicationsReceived;
+      $scope.abaSelecionada = tab.title;
+      $scope.populateYeps();
+    };
+
+    $scope.populateYeps = function() {
+      if($scope.abaSelecionada == 'received') {
+        $scope.groupedIndications = $scope.groupedIndicationsReceived;
       } else {
-        this.groupedIndications = this.groupedIndicationsSent;
+        $scope.groupedIndications = $scope.groupedIndicationsSent;
       }
     };
 
