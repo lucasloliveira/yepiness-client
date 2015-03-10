@@ -21,8 +21,7 @@
 
           <div class="media-image pull-left">
             <a href="#">
-              <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}"
-                   alt="...">
+              <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}">
             </a>
           </div>
           <div class="media-body">
@@ -35,11 +34,31 @@
       </div>
 
       <div class="indication-actions clearfix">
-        <div class="friend-actions pull-left">
-          <i class="fa fa-user-plus fa-1x"></i>
+        <div class="pull-left">
+          <span class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle><i class="fa fa-1x" ng-class="newYep.category.icon"></i> {{newYep.category.name}}</a>
+            <ul class="dropdown-menu">
+              <li ng-repeat="category in categories">
+                <a ng-click="selectCategory(category)">{{category.name}}</a>
+              </li>
+            </ul>
+          </span>
+          <span class="publishing-action">
+            <i class="fa fa-user-plus fa-1x" ></i>
+            <input placeholder="Selecione um amigo" />
+          </span>
+
+          <!--<div class="category-action">-->
+            <!--<button class="btn btn-primary dropdown-toggle" dropdown-toggle ng><i class="fa fa-tag fa-1x"></i> Select a category</button>-->
+            <!--<ul class="dropdown-menu">-->
+              <!--<li ng-repeat="category in categories">-->
+                <!--{{category}}-->
+              <!--</li>-->
+            <!--</ul>-->
+          <!--</div>-->
         </div>
         <div class="publish pull-right">
-          <button class="btn btn-sm publish" ng-click="create()">Publicar</button>
+          <button class="btn btn-sm" ng-click="create()">Publicar</button>
         </div>
       </div>
     </div>

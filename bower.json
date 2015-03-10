@@ -9,7 +9,7 @@
     "es5-shim": "^4.0.0",
     "font-awesome": "~4.3.0",
     "angular-ui-router": "~0.2.12",
-    "angular-bootstrap": "~0.12.0",
+    "angular-bootstrap": "~0.12.1",
     "ng-token-auth": "~0.0.24",
     "bootstrap-social": "~4.8.0",
     "angular-elastic": "~2.4.2"

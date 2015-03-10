@@ -1,19 +1,19 @@
 .header {
-  background-color: #DE4028;
+  background-color: @yep-primary-color;
   min-height: 20px;
 
   .yep-header {
     vertical-align: middle;
 
-    .open {
-      background-color: #008000;
-    }
-
-    .options {
+    .dropdown-toggle {
       color: white;
       &:focus, &:hover {
-        color: #F0F0F0;
+        color: #F0F0F0 !important;
       }
+    }
+
+    .dropdown-toggle:active, .open .dropdown-toggle {
+      background-color: @yep-primary-color !important;
     }
   }
 }

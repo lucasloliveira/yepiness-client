@@ -15,6 +15,82 @@
 
     $scope.current = 'feed/feed.html';
 
+    $scope.emptyCategory = {
+      icon: 'fa-tag',
+      name: 'Select a category'
+    };
+
+    $scope.categories = [
+      {
+        icon: 'fa-book',
+        name: 'Books/HQ/Manga'
+      },
+      {
+        icon: 'fa-film',
+        name: 'Movies'
+      },
+      {
+        icon: 'fa-cc',
+        name: 'TV series/Cartoons/Animes'
+      },
+      {
+        icon: 'fa-youtube-play',
+        name: 'Videos'
+      },
+      {
+        icon: 'fa-music',
+        name: 'Musics'
+      },
+      {
+        icon: 'fa-microphone',
+        name: 'Podcasts'
+      },
+      {
+        icon: 'fa-gamepad',
+        name: 'Games'
+      },
+      {
+        icon: 'fa-mobile',
+        name: 'Apps/Tools'
+      },
+      {
+        icon: 'fa-map-marker',
+        name: 'Places'
+      },
+      {
+        icon: 'fa-university',
+        name: 'Stuff/Brands'
+      },
+      {
+        icon: 'fa-bookmark',
+        name: 'Articles'
+      },
+      {
+        icon: 'fa-beer',
+        name: 'Events'
+      },
+      {
+        icon: 'fa-graduation-cap',
+        name: 'Courses'
+      },
+      {
+        icon: 'fa-motorcycle',
+        name: 'Sports/Activities'
+      },
+      {
+        icon: 'fa-star',
+        name: 'References'
+      },
+      {
+        icon: 'fa-users',
+        name: 'People/Services'
+      }
+    ];
+
+    $scope.newYep = {
+      category: $scope.emptyCategory
+    };
+
     $scope.create = function(){
       YepService.create($scope.newYep).success(function(response){
         var createdDate = new Date(response.created_at).format('{Weekday} {d} {Month}, {yyyy}', 'pt');
@@ -32,10 +108,10 @@
           $scope.groupedIndicationsSent.push({
             date: createdDate,
             yeps: [response]
-          })
+          });
         }
 
-        $scope.newYep = undefined;
+        $scope.newYep = {};
         $scope.yepContent = undefined;
       }).error(function(response){
         console.log(response);

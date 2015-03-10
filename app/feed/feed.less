@@ -36,14 +36,35 @@
     margin-top: 4px;
     vertical-align: middle;
 
-    .friend-actions {
-      display: inline;
+    span {
+      display: block;
+    }
+
+    .publishing-action {
+      cursor: pointer;
       .fa {
-        cursor: pointer;
+        color: @yep-action-color;
+      }
+      input {
+        border: 0;
+        &:focus {
+          outline-width: 0;
+        }
+      }
+      ::-webkit-input-placeholder {
+        color: @yep-action-color;
       }
 
-      .friend {
+      :-moz-placeholder {
+        color: @yep-action-color;
+      }
 
+      ::-moz-placeholder {
+        color: @yep-action-color;
+      }
+
+      :-ms-input-placeholder {
+        color: @yep-action-color;
       }
     }
     .publish {
@@ -80,7 +101,7 @@
         margin-right: 0;
         border-radius: 0;
         border: 0;
-        background-color: rgb(42, 92, 130);
+        background-color: @yep-action-color;
         color: #ffffff;
         cursor: pointer;
       }
@@ -89,7 +110,7 @@
         &:hover,
         &:focus {
           background-color: #ffffff;
-          color: #DE4028;
+          color: @yep-primary-color;
           border-radius: 0;
           border: 0;
         }
@@ -104,7 +125,7 @@
 
 .indications-list {
   > h3 {
-    color: #DE4028;
+    color: @yep-primary-color;
     font-family: 'Quicksand';
   }
 }
@@ -132,14 +153,14 @@
     padding-left: 8px;
 
     .media-heading > a {
-      color: #DE4028;
+      color: @yep-primary-color;
       font-size: 14px;
       padding-top: 5px;
       margin: 0 0 2px;
     }
 
     .url {
-      color: #2A5C82;
+      color: @yep-action-color;
       margin-top: 0px;
       font-weight: bold;
     }
