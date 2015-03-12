@@ -7,7 +7,6 @@
     "bootstrap": "~3.2.0",
     "json3": "^3.3.0",
     "es5-shim": "^4.0.0",
-    "font-awesome": "~4.3.0",
     "angular-ui-router": "~0.2.12",
     "angular-bootstrap": "~0.12.1",
     "ng-token-auth": "~0.0.24",
