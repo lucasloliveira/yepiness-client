@@ -150,6 +150,10 @@
       $scope.user.friendsCount = resp;
     });
 
+    User.friends().success(function(response) {
+      $scope.user.friends = response;
+    });
+
     /// YEPCONTROLLER METHODS
     $scope.tabs = [
       {title: 'Indications Received', type: 'received'},

@@ -11,5 +11,17 @@
     this.friendsCount = function (){
       return $http.get(ENV.apiEndpoint + base + '/friends/count');
     };
+
+    this.friends = function(){
+      return $http.get(ENV.apiEndpoint + base + '/friends');
+    };
+
+    this.get = function(id) {
+      return $http.get(ENV.apiEndpoint + base + '/' + id);
+    };
+
+    this.addFriend = function(friendId) {
+      return $http.post(ENV.apiEndpoint + base + '/addFriend/' + friendId);
+    }
   }
 })();

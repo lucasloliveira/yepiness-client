@@ -30,7 +30,6 @@
     });
 
     var loggedSuccess = function() {
-      $state.go('home');
       $rootScope.logged = true;
     };
 
