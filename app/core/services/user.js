@@ -21,7 +21,28 @@
     };
 
     this.addFriend = function(friendId) {
-      return $http.post(ENV.apiEndpoint + base + '/addFriend/' + friendId);
-    }
+      return $http.post(ENV.apiEndpoint + base + '/friends/add/' + friendId);
+    };
+
+    this.receivedRequests = function() {
+      return $http.get(ENV.apiEndpoint + base + '/friends/received');
+    };
+
+    this.sentRequests = function() {
+      return $http.get(ENV.apiEndpoint + base + '/friends/sent');
+    };
+
+    this.acceptFriend = function(friendId) {
+      return $http.post(ENV.apiEndpoint + base + '/friends/accept/' + friendId);
+    };
+
+    this.declineFriend = function(friendId) {
+      return $http.post(ENV.apiEndpoint + base + '/friends/decline/' + friendId);
+    };
+
+    this.removeFriend = function(friendId) {
+      return $http.post(ENV.apiEndpoint + base + '/friends/remove/' + friendId);
+    };
+
   }
 })();

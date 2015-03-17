@@ -146,12 +146,26 @@
       $scope.newYep.image = undefined;
     };
 
+    $scope.acceptFriend = function(request) {
+      User.acceptFriend(request.id).success(function(obj) {
+        
+      });
+    };
+
+    $scope.declineFriend = function(request) {
+      console.log(request);
+    };
+
     User.friendsCount().success(function(resp){
       $scope.user.friendsCount = resp;
     });
 
     User.friends().success(function(response) {
       $scope.user.friends = response;
+    });
+
+    User.receivedRequests().success(function(obj) {
+      $scope.friendRequests = obj.response;
     });
 
     /// YEPCONTROLLER METHODS

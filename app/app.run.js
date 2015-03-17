@@ -15,11 +15,12 @@
       logout();
     });
 
-    $rootScope.$on('auth:login-success', function(ev) {
+    $rootScope.$on('auth:login-success', function() {
       loggedSuccess();
+      $state.go('home');
     });
 
-    $rootScope.$on('auth:logout-success', function(ev) {
+    $rootScope.$on('auth:logout-success', function() {
       logout();
     });
 

@@ -13,7 +13,6 @@
 
   // @ngInject
   function Login() {
-
   }
 
 })();
