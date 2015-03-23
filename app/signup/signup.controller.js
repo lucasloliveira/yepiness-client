@@ -3,16 +3,16 @@
 
   /**
    * @ngdoc function
-   * @name yepinessApp.controller:LoginCtrl
+   * @name yepinessApp.controller:SignupCtrl
    * @description
-   * # LoginCtrl
+   * # SignupCtrl
    * Controller of the yepinessApp
    */
   angular.module('yepinessApp')
-    .controller('LoginCtrl', Login);
+    .controller('SignupCtrl', Signup);
 
   // @ngInject
-  function Login() {
+  function Signup() {
   }
 
 })();

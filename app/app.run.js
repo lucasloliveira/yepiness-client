@@ -24,18 +24,20 @@
       logout();
     });
 
-    $rootScope.$on('$locationChangeSuccess', function() {
-      $auth.validateUser().catch(function () {
-        $state.go('login');
-      });
-    });
+    //$rootScope.$on('$locationChangeSuccess', function(resp) {
+    //  $auth.validateUser().catch(function (response) {
+    //    console.log(response);
+    //    console.log(resp);
+    //    $state.go('signin');
+    //  });
+    //});
 
     var loggedSuccess = function() {
       $rootScope.logged = true;
     };
 
     var logout = function() {
-      $state.go('login');
+      $state.go('signin');
       $rootScope.logged = false;
     };
   }

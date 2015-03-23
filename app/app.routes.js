@@ -17,10 +17,15 @@
         templateUrl: 'profile/profile.html',
         controller: 'ProfileCtrl'
       })
-      .state('login', {
-        url: '/login',
-        templateUrl: 'login/login.html',
-        controller: 'LoginCtrl'
+      .state('signin', {
+        url: '/signin',
+        templateUrl: 'signin/signin.html',
+        controller: 'SigninCtrl'
+      })
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'signup/signup.html',
+        controller: 'SignupCtrl'
       });
   }
 })();

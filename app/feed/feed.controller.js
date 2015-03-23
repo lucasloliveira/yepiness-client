@@ -91,6 +91,14 @@
       category: $scope.emptyCategory
     };
 
+    $scope.changeFriends = function(){
+
+    };
+
+    $scope.editFriends = function() {
+      $scope.selectFriends = $scope.selectFriends ? false : true;
+    };
+
     $scope.create = function(){
       YepService.create($scope.newYep).success(function(response){
         var createdDate = new Date(response.created_at).format('{Weekday} {d} {Month}, {yyyy}', 'pt');
@@ -146,9 +154,13 @@
       $scope.newYep.image = undefined;
     };
 
+    $scope.selectCategory = function(category) {
+      $scope.newYep.category = category;
+    };
+
     $scope.acceptFriend = function(request) {
       User.acceptFriend(request.id).success(function(obj) {
-        
+
       });
     };
 

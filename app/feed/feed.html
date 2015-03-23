@@ -23,7 +23,7 @@
 
   <div class="panel col-md-offset-1 col-md-7">
     <div class="indication-input">
-      <textarea msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
+      <textarea class="clear-textarea" msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
       </textarea>
       <div class="media indication-content" ng-show="yepContent">
         <div class="clearfix">
@@ -42,10 +42,14 @@
           </div>
         </div>
       </div>
+      <div class="select-friends" ng-show="selectFriends">
+        <textarea class="clear-textarea" msd-elastic placeholder="Pra quem indicar?" rows="1" ng-model="friends">
+        </textarea>
+      </div>
 
       <div class="indication-actions clearfix">
-        <div class="pull-left">
-          <span class="dropdown" dropdown on-toggle="toggled(open)">
+        <div class="pull-left config-actions">
+          <span class="dropdown category-actions" dropdown>
             <a href class="dropdown-toggle" dropdown-toggle><i class="fa fa-1x" ng-class="newYep.category.icon"></i> {{newYep.category.name}}</a>
             <ul class="dropdown-menu">
               <li ng-repeat="category in categories">
@@ -53,19 +57,9 @@
               </li>
             </ul>
           </span>
-          <span class="publishing-action">
-            <i class="fa fa-user-plus fa-1x" ></i>
-            <input placeholder="Selecione um amigo" />
+          <span class="friends-action">
+            <i class="fa fa-user-plus fa-1x" ng-click="editFriends()" ></i>
           </span>
-
-          <!--<div class="category-action">-->
-            <!--<button class="btn btn-primary dropdown-toggle" dropdown-toggle ng><i class="fa fa-tag fa-1x"></i> Select a category</button>-->
-            <!--<ul class="dropdown-menu">-->
-              <!--<li ng-repeat="category in categories">-->
-                <!--{{category}}-->
-              <!--</li>-->
-            <!--</ul>-->
-          <!--</div>-->
         </div>
         <div class="publish pull-right">
           <button class="btn btn-sm" ng-click="create()">Publicar</button>
