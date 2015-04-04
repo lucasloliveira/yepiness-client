@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="panel col-md-offset-1 col-md-7">
+  <div class="panel col-md-offset-1 col-md-9">
     <div class="indication-input">
       <textarea class="clear-textarea" msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
       </textarea>
@@ -45,9 +45,11 @@
       <div class="select-friends" ng-show="selectFriends">
         <!--<textarea class="clear-textarea" placeholder="Pra quem indicar?" rows="1" ng-model="friends">-->
         <!--</textarea>-->
-        <tags-input ng-model="newYep.friends"
+        <tags-input
+                    class="friends-input"
+                    ng-model="newYep.friends"
                     display-property="name"
-                    placeholder="Add a country"
+                    placeholder="Add a friend"
                     replace-spaces-with-dashes="false">
           <auto-complete source="loadFriends($query)"
                          min-length="0"
@@ -78,7 +80,7 @@
     </div>
   </div>
 
-  <div class="panel col-md-offset-1 col-md-7 indications-panel">
+  <div class="panel col-md-offset-3 col-md-9 indications-panel">
     <div>
       <tabset>
         <tab ng-repeat="tab in tabs" heading="{{tab.title}}" select="changeTab(tab)" active="tab.active"
