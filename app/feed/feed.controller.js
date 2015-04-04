@@ -88,7 +88,8 @@
     ];
 
     $scope.newYep = {
-      category: $scope.emptyCategory
+      category: $scope.emptyCategory,
+      friends: []
     };
 
     $scope.changeFriends = function(){
@@ -211,7 +212,7 @@
     };
 
     $scope.changeTab = function(tab) {
-      $scope.abaSelecionada = tab.title;
+      $scope.abaSelecionada = tab.type;
       $scope.populateYeps();
     };
 
@@ -222,6 +223,12 @@
         $scope.groupedIndications = $scope.groupedIndicationsSent;
       }
     };
+
+    $scope.loadFriends = function($query){
+      return $scope.user.friends.filter(function(friend){
+        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;;
+      });
+    }
 
   }
 })();

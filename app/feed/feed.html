@@ -43,8 +43,18 @@
         </div>
       </div>
       <div class="select-friends" ng-show="selectFriends">
-        <textarea class="clear-textarea" msd-elastic placeholder="Pra quem indicar?" rows="1" ng-model="friends">
-        </textarea>
+        <!--<textarea class="clear-textarea" placeholder="Pra quem indicar?" rows="1" ng-model="friends">-->
+        <!--</textarea>-->
+        <tags-input ng-model="newYep.friends"
+                    display-property="name"
+                    placeholder="Add a country"
+                    replace-spaces-with-dashes="false">
+          <auto-complete source="loadFriends($query)"
+                         min-length="0"
+                         load-on-focus="true"
+                         load-on-empty="true"
+                         max-results-to-show="32"></auto-complete>
+        </tags-input>
       </div>
 
       <div class="indication-actions clearfix">
