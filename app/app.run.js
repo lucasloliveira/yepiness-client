@@ -15,27 +15,29 @@
       logout();
     });
 
-    $rootScope.$on('auth:login-success', function(ev) {
+    $rootScope.$on('auth:login-success', function() {
       loggedSuccess();
+      $state.go('home');
     });
 
-    $rootScope.$on('auth:logout-success', function(ev) {
+    $rootScope.$on('auth:logout-success', function() {
       logout();
     });
 
-    $rootScope.$on('$locationChangeSuccess', function() {
-      $auth.validateUser().catch(function () {
-        $state.go('login');
-      });
-    });
+    //$rootScope.$on('$locationChangeSuccess', function(resp) {
+    //  $auth.validateUser().catch(function (response) {
+    //    console.log(response);
+    //    console.log(resp);
+    //    $state.go('signin');
+    //  });
+    //});
 
     var loggedSuccess = function() {
-      $state.go('home');
       $rootScope.logged = true;
     };
 
     var logout = function() {
-      $state.go('login');
+      $state.go('signin');
       $rootScope.logged = false;
     };
   }

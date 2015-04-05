@@ -18,55 +18,119 @@
       padding-left: 14px;
     }
   }
+
+  .friend-requests {
+    .friend {
+      padding-left: 10px;
+      padding-bottom: 4px;
+      img {
+        max-width: 30px;
+      }
+      i {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}
+
+.clear-textarea {
+  width: 100%;
+  border-width: 0;
+  margin: 0px;
+  padding: 8px;
+  resize: none;
+  &:focus {
+    outline-width: 0;
+  }
+}
+
+.friends-input {
+  .tags {
+    border: none;
+    .tag-item {
+      background: #428bca;
+      border: 1px solid #357ebd;
+      border-radius: 4px;
+      color: #fff;
+
+      &.selected {
+        background: #ff7f84;
+        border: 1px solid #FD7575;
+      }
+
+      .remove-button {
+        color: white;
+
+        &:hover {
+          color: #c1c1c1;
+          text-decoration: none;
+        }
+        &:active {
+          color: #a2a2a2;
+        }
+      }
+    }
+  }
+}
+
+.crawling {
+  float: right;
+  position: absolute;
+  right: 20px;
+  top: 6px;
 }
 
 .indication-input {
-  > textarea {
-    width: 100%;
-    border-width: 0;
-    margin: 0px;
-    padding: 8px;
-    resize: none;
-    &:focus {
-      outline-width: 0;
-    }
-  }
 
   .indication-actions {
     margin-top: 4px;
     vertical-align: middle;
+    display: inline;
 
     span {
       display: block;
     }
 
-    .publishing-action {
-      cursor: pointer;
-      .fa {
-        color: @yep-action-color;
+    .config-actions {
+      display: inline;
+
+      .category-actions {
+        display: inline;
       }
-      input {
-        border: 0;
-        &:focus {
-          outline-width: 0;
+
+      .friends-action {
+        cursor: pointer;
+        display: inline;
+        margin: 8px;
+        .fa {
+          color: @yep-action-color;
+        }
+        input {
+          border: 0;
+          &:focus {
+            outline-width: 0;
+          }
+        }
+        ::-webkit-input-placeholder {
+          color: @yep-action-color;
+        }
+
+        :-moz-placeholder {
+          color: @yep-action-color;
+        }
+
+        ::-moz-placeholder {
+          color: @yep-action-color;
+        }
+
+        :-ms-input-placeholder {
+          color: @yep-action-color;
         }
       }
-      ::-webkit-input-placeholder {
-        color: @yep-action-color;
-      }
 
-      :-moz-placeholder {
-        color: @yep-action-color;
-      }
-
-      ::-moz-placeholder {
-        color: @yep-action-color;
-      }
-
-      :-ms-input-placeholder {
-        color: @yep-action-color;
-      }
     }
+
     .publish {
       display: inline;
 
@@ -84,6 +148,15 @@
     }
   }
 
+}
+
+.select-friends {
+  > textarea {
+    padding-bottom: 3px;
+    padding-top: 2px;
+    border-bottom: thick dotted @yep-action-color;
+    border-bottom-width: 1px;
+  }
 }
 
 .indications-panel {

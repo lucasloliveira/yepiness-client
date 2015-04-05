@@ -15,10 +15,6 @@
 
     $scope.current = 'feed/feed.html';
 
-    $scope.emptyCategory = {
-      icon: 'fa-tag',
-      name: 'Select a category'
-    };
 
     $scope.categories = [
       {
@@ -88,7 +84,15 @@
     ];
 
     $scope.newYep = {
-      category: $scope.emptyCategory
+      friends: []
+    };
+
+    $scope.changeFriends = function(){
+
+    };
+
+    $scope.editFriends = function() {
+      $scope.selectFriends = $scope.selectFriends ? false : true;
     };
 
     $scope.create = function(){
@@ -111,7 +115,9 @@
           });
         }
 
-        $scope.newYep = {};
+        $scope.newYep = {
+          friends: []
+        };
         $scope.yepContent = undefined;
       }).error(function(response){
         console.log(response);
@@ -123,7 +129,9 @@
         var regexToken = /(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)|((mailto:)?[_.\w-]+@([\w][\w\-]+\.)+[a-zA-Z]{2,3})/g;
         var urls = newYep.match(regexToken);
         if(urls !== null && urls.length > 0) {
+          $scope.crawling = true;
           Crawler.crawl(newYep).success(function(response){
+            $scope.crawling = false;
             $scope.yepContent = response;
 
             $scope.newYep.title = response.title;
@@ -132,6 +140,7 @@
             $scope.newYep.shortUrl = response.uri;
             $scope.newYep.image = response.images.length > 0 ? response.images[0] : '';
           }).error(function(){
+            $scope.crawling = false;
             $scope.removeYep();
           });
         }
@@ -146,8 +155,34 @@
       $scope.newYep.image = undefined;
     };
 
+    $scope.selectCategory = function(category) {
+      $scope.newYep.category = category;
+    };
+
+    $scope.removeCategory = function() {
+      $scope.newYep.category = undefined;
+    };
+
+    $scope.acceptFriend = function(request) {
+      User.acceptFriend(request.id).success(function(obj) {
+
+      });
+    };
+
+    $scope.declineFriend = function(request) {
+      console.log(request);
+    };
+
     User.friendsCount().success(function(resp){
       $scope.user.friendsCount = resp;
+    });
+
+    User.friends().success(function(response) {
+      $scope.user.friends = response;
+    });
+
+    User.receivedRequests().success(function(obj) {
+      $scope.friendRequests = obj.response;
     });
 
     /// YEPCONTROLLER METHODS
@@ -181,7 +216,7 @@
     };
 
     $scope.changeTab = function(tab) {
-      $scope.abaSelecionada = tab.title;
+      $scope.abaSelecionada = tab.type;
       $scope.populateYeps();
     };
 
@@ -192,6 +227,12 @@
         $scope.groupedIndications = $scope.groupedIndicationsSent;
       }
     };
+
+    $scope.loadFriends = function($query){
+      return $scope.user.friends.filter(function(friend){
+        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;;
+      });
+    }
 
   }
 })();
