@@ -102,6 +102,13 @@
                   <h6 class="url"><a ng-href="{{indication.url}}" target="_blank">{{indication.url}}</a></h6>
 
                   <p class="media-description col-md-12">{{indication.description}}</p>
+                  <ul class="list-inline">
+                    <li ng-repeat="user in indication.users">
+                      <a ng-href="/profile/{{user.id}}">
+                        <img ng-src="{{user.image}}" />
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <p class="media-content col-md-24">{{indication.content}}</p>
