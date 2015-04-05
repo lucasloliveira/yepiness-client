@@ -15,10 +15,6 @@
 
     $scope.current = 'feed/feed.html';
 
-    $scope.emptyCategory = {
-      icon: 'fa-tag',
-      name: 'Select a category'
-    };
 
     $scope.categories = [
       {
@@ -88,7 +84,6 @@
     ];
 
     $scope.newYep = {
-      category: $scope.emptyCategory,
       friends: []
     };
 
@@ -120,7 +115,9 @@
           });
         }
 
-        $scope.newYep = {};
+        $scope.newYep = {
+          friends: []
+        };
         $scope.yepContent = undefined;
       }).error(function(response){
         console.log(response);
@@ -132,7 +129,9 @@
         var regexToken = /(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)|((mailto:)?[_.\w-]+@([\w][\w\-]+\.)+[a-zA-Z]{2,3})/g;
         var urls = newYep.match(regexToken);
         if(urls !== null && urls.length > 0) {
+          $scope.crawling = true;
           Crawler.crawl(newYep).success(function(response){
+            $scope.crawling = false;
             $scope.yepContent = response;
 
             $scope.newYep.title = response.title;
@@ -141,6 +140,7 @@
             $scope.newYep.shortUrl = response.uri;
             $scope.newYep.image = response.images.length > 0 ? response.images[0] : '';
           }).error(function(){
+            $scope.crawling = false;
             $scope.removeYep();
           });
         }
@@ -157,6 +157,10 @@
 
     $scope.selectCategory = function(category) {
       $scope.newYep.category = category;
+    };
+
+    $scope.removeCategory = function() {
+      $scope.newYep.category = undefined;
     };
 
     $scope.acceptFriend = function(request) {

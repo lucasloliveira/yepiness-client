@@ -23,6 +23,7 @@
 
   <div class="panel col-md-offset-1 col-md-9">
     <div class="indication-input">
+      <i ng-show="crawling" class="crawling fa fa-spinner fa-spin"/>
       <textarea class="clear-textarea" msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
       </textarea>
       <div class="media indication-content" ng-show="yepContent">
@@ -62,7 +63,7 @@
       <div class="indication-actions clearfix">
         <div class="pull-left config-actions">
           <span class="dropdown category-actions" dropdown>
-            <a href class="dropdown-toggle" dropdown-toggle><i class="fa fa-1x" ng-class="newYep.category.icon"></i> {{newYep.category.name}}</a>
+            <a href class="dropdown-toggle" dropdown-toggle><i class="fa fa-1x" ng-class="newYep.category.icon"></i> {{newYep.category ? newYep.category.name : 'Selecione uma categoria'}} <i ng-show="newYep.category" class="fa fa-close" ng-click="removeCategory()"></i></a>
             <ul class="dropdown-menu">
               <li ng-repeat="category in categories">
                 <a ng-click="selectCategory(category)">{{category.name}}</a>
