@@ -14,8 +14,8 @@
       <div class="panel-body">
         <div class="friend" ng-repeat="request in friendRequests">
           <img ng-src="{{request.image}}"  class="img-circle"> {{request.name}}
-          <button ng-click="acceptFriend(request)" class="btn btn-xs btn-danger">x</button>
-          <button ng-click="declineFriend(request)" class="btn btn-xs btn-primary">+</button>
+          <button ng-click="declineFriend(request)" class="btn btn-xs btn-danger">x</button>
+          <button ng-click="acceptFriend(request)" class="btn btn-xs btn-primary">+</button>
         </div>
       </div>
     </div>
