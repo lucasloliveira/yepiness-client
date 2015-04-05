@@ -145,8 +145,8 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-//              require('grunt-connect-proxy/lib/utils').proxyRequest,
-//              require('connect-modrewrite')(['^[^\\.]*$ /index.html [L]']),
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
+              require('connect-modrewrite')(['^[^\\.]*$ /index.html [L]']),
               connect.static(appConfig.dist)
             ];
           }
