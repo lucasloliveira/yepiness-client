@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')({
+var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*']
 });
 var browserSync = require('browser-sync').create();
@@ -11,39 +11,59 @@ var app = {
   src: 'src',
   scss: 'src/**/*.scss',
   js: 'src/**/*.js',
+  html: 'src/**/*.html',
   build: 'build',
   target: 'target'
 };
 
 gulp.task('scss', function() {
   return gulp.src(app.scss)
-    .pipe(plugins.sass())
-    .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.concatCss('main.css'))
-    .pipe(plugins.minifyCss({compatibility: 'ie8'}))
-    .pipe(plugins.sourcemaps.write())
+    .pipe($.sass())
+    .pipe($.sourcemaps.init())
+    .pipe($.concatCss('main.css'))
+    .pipe($.minifyCss({compatibility: 'ie8'}))
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest(app.build + '/css'));
 });
 
 gulp.task('clean', function() {
   return gulp.src([app.build, app.target], {read: false})
-    .pipe(plugins.clean());
+    .pipe($.clean());
 });
 
 gulp.task('jshint', function() {
   return gulp.src(app.js)
-    .pipe(plugins.jshint())
-    .pipe(plugins.jshint.reporter('jshint-stylish'));
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('js', ['jshint'], function() {
+gulp.task('js', ['jshint', 'config'], function() {
 
   return gulp.src([app.js, app.build])
-    .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.ngAnnotate({single_quotes: true, gulpWarnings: false}))
-    .pipe(plugins.uglify())
-    .pipe(plugins.sourcemaps.write())
+    .pipe($.sourcemaps.init())
+    .pipe($.ngAnnotate({single_quotes: true, gulpWarnings: false}))
+    .pipe($.uglify())
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest(app.target + '/js'));
+});
+
+gulp.task('html', function() {
+  return gulp.src(app.html)
+    .pipe($.minifyHtml({empty: true, spare: true, quotes: true}))
+    .pipe($.angularTemplatecache({module: 'yepinessApp'}))
+    .pipe(gulp.dest(app.target + '/js'));
+});
+
+gulp.task('config', function() {
+
+  var configFile = require('./' + app.src + '/config.json');
+
+  return $.ngConstant({
+    name: 'config',
+    constants: configFile['development'],
+    stream: true
+  })
+    .pipe(gulp.dest(app.target));
 });
 
 // Injecting dependencies to the HTML
@@ -56,7 +76,7 @@ gulp.task('inject', function() {
   var target = gulp.src(app.src + '/index.html');
   var scriptSources = gulp
     .src([app.target + '/**/*.js'])
-    .pipe(plugins.angularFilesort());
+    .pipe($.angularFilesort());
 
   var cssSources = gulp
     .src([app.build + '/**/*.css']);
@@ -66,17 +86,18 @@ gulp.task('inject', function() {
     exclude: ['jquery', 'bootstrap.js', 'bootstrap.css']
   };
 
-  var assets = plugins.useref.assets();
+  var assets = $.useref.assets();
 
   return target
     .pipe(wiredep.stream(wiredepOpts))
-    .pipe(plugins.inject(scriptSources, injectOptions))
-    .pipe(plugins.inject(cssSources, injectOptions))
+    .pipe($.inject(scriptSources, injectOptions))
+    .pipe($.inject(cssSources, injectOptions))
     .pipe(gulp.dest(app.build))
     .pipe(assets)
-    .pipe(plugins.if('*.js', plugins.uglify()))
+    .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.css', $.minifyCss({compatibility: 'ie8'})))
     .pipe(assets.restore())
-    .pipe(plugins.useref())
+    .pipe($.useref())
     .pipe(gulp.dest(app.build));
 });
 
@@ -94,7 +115,7 @@ gulp.task('serve', ['build'], function() {
 
 gulp.task('build', function(callback) {
   runSequence('clean',
-    ['scss', 'js'],
+    ['scss', 'js', 'html'],
     'inject',
     callback);
 });
