@@ -1,0 +1,26 @@
+@import "signin/signin";
+@import "feed/feed";
+@import "header/header";
+@import "variables";
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+@import url(http://fonts.googleapis.com/css?family=Quicksand);
+
+body {
+  background: rgb(229, 233, 237);
+  font-family: 'Noto Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  a {
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: $yep-action-color;
+  }
+}
+
+.yepiness-white {
+  font-family: "Quicksand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white;
+  padding-left: 26px;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}

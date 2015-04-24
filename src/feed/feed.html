@@ -1,0 +1,114 @@
+<div class="home-container container">
+  <div class="panel col-md-2 avatar-box">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="avatar" ng-src="{{user.image}}">
+      </div>
+      <div class="col-md-6">
+        <h5 class="avatar-box-label"><a ng-href="/profile/{{user.id}}">{{user.name}}</a></h5>
+        <h6 class="avatar-box-label"><a>{{user.friendsCount}} friends</a></h6>
+      </div>
+    </div>
+    <div class="panel row friend-requests">
+      <h6 class="text-center">Friend requests</h6>
+      <div class="panel-body">
+        <div class="friend" ng-repeat="request in friendRequests">
+          <img ng-src="{{request.image}}"  class="img-circle"> {{request.name}}
+          <button ng-click="declineFriend(request)" class="btn btn-xs btn-danger">x</button>
+          <button ng-click="acceptFriend(request)" class="btn btn-xs btn-primary">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel col-md-offset-1 col-md-9">
+    <div class="indication-input">
+      <i ng-show="crawling" class="crawling fa fa-spinner fa-spin"/>
+      <textarea class="clear-textarea" msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
+      </textarea>
+      <div class="media indication-content" ng-show="yepContent">
+        <div class="clearfix">
+          <a class="pull-right" ng-click="removeYep()"><i class="media-close fa fa-close"></i></a>
+
+          <div class="media-image pull-left">
+            <a href="#">
+              <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.title}}</a></h4>
+            <h6 class="url"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.url}}</a></h6>
+
+            <p class="media-description col-md-12">{{newYep.description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="select-friends" ng-show="selectFriends">
+        <!--<textarea class="clear-textarea" placeholder="Pra quem indicar?" rows="1" ng-model="friends">-->
+        <!--</textarea>-->
+        <tags-input
+                    class="friends-input"
+                    ng-model="newYep.friends"
+                    display-property="name"
+                    placeholder="Add a friend"
+                    replace-spaces-with-dashes="false">
+          <auto-complete source="loadFriends($query)"
+                         min-length="0"
+                         load-on-focus="true"
+                         load-on-empty="true"
+                         max-results-to-show="32"></auto-complete>
+        </tags-input>
+      </div>
+
+      <div class="indication-actions clearfix">
+        <div class="pull-left config-actions">
+          <span class="dropdown category-actions" dropdown>
+            <a href class="dropdown-toggle" dropdown-toggle><i class="fa fa-1x" ng-class="newYep.category.icon"></i> {{newYep.category ? newYep.category.name : 'Selecione uma categoria'}} <i ng-show="newYep.category" class="fa fa-close" ng-click="removeCategory()"></i></a>
+            <ul class="dropdown-menu">
+              <li ng-repeat="category in categories">
+                <a ng-click="selectCategory(category)">{{category.name}}</a>
+              </li>
+            </ul>
+          </span>
+          <span class="friends-action">
+            <i class="fa fa-user-plus fa-1x" ng-click="editFriends()" ></i>
+          </span>
+        </div>
+        <div class="publish pull-right">
+          <button class="btn btn-sm" ng-click="create()">Publicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel col-md-offset-3 col-md-9 indications-panel">
+    <div>
+      <tabset>
+        <tab ng-repeat="tab in tabs" heading="{{tab.title}}" select="changeTab(tab)" active="tab.active"
+             disabled="tab.disabled" class="pull-right">
+          <div class="indications-list" ng-repeat="group in groupedIndications">
+            <h3>{{group.date}}</h3>
+            <div class="media indication-content" ng-repeat="indication in group.yeps">
+              <div class="clearfix">
+                <a class="pull-right" ng-click="removeYep()"><i class="media-close fa fa-close"></i></a>
+
+                <div class="media-image pull-left">
+                  <a href="#">
+                    <img ng-show="indication.image" class="media-object indication-image" ng-src="{{indication.image}}">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading"><a ng-href="{{indication.url}}" target="_blank">{{indication.title}}</a></h4>
+                  <h6 class="url"><a ng-href="{{indication.url}}" target="_blank">{{indication.url}}</a></h6>
+
+                  <p class="media-description col-md-12">{{indication.description}}</p>
+                </div>
+              </div>
+              <p class="media-content col-md-24">{{indication.content}}</p>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
