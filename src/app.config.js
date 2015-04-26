@@ -15,7 +15,10 @@
 
   // @ngInject
   function Config($locationProvider, $urlRouterProvider, $authProvider, ENV) {
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    }).hashPrefix('!');
     $urlRouterProvider.otherwise('/');
 
     $authProvider.configure({

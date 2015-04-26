@@ -8,7 +8,7 @@
   function Routes($stateProvider) {
     $stateProvider
       .state('home', {
-        url: '/',
+        url: '/home',
         templateUrl: 'home/home.html',
         controller: 'FeedCtrl'
       })
@@ -18,7 +18,7 @@
         controller: 'ProfileCtrl'
       })
       .state('signin', {
-        url: '/signin',
+        url: '/',
         templateUrl: 'signin/signin.html',
         controller: 'SigninCtrl'
       })

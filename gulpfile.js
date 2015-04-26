@@ -42,16 +42,25 @@ gulp.task('js', ['jshint', 'config'], function() {
   return gulp.src([app.js, app.build])
     .pipe($.sourcemaps.init())
     .pipe($.ngAnnotate({single_quotes: true, gulpWarnings: false}))
-    .pipe($.uglify())
+    //.pipe($.uglify())
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(app.target + '/js'));
 });
 
 gulp.task('html', function() {
   return gulp.src(app.html)
-    .pipe($.minifyHtml({empty: true, spare: true, quotes: true}))
-    .pipe($.angularTemplatecache({module: 'yepinessApp'}))
-    .pipe(gulp.dest(app.target + '/js'));
+    //.pipe($.minifyHtml({empty: true, spare: true, quotes: true}))
+    //.pipe($.angularTemplatecache({module: 'yepinessApp'}))
+    .pipe(gulp.dest(app.build));
+});
+
+gulp.task('fonts', function () {
+  return gulp
+    .src([
+      'bower_components/font-awesome/fonts/*',
+      'bower_components/bootstrap/fonts/*'
+    ])
+    .pipe(gulp.dest(app.build + '/fonts'));
 });
 
 gulp.task('config', function() {
@@ -94,8 +103,8 @@ gulp.task('inject', function() {
     .pipe($.inject(cssSources, injectOptions))
     .pipe(gulp.dest(app.build))
     .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.minifyCss({compatibility: 'ie8'})))
+    //.pipe($.if('*.js', $.uglify()))
+    //.pipe($.if('*.css', $.minifyCss({compatibility: 'ie8'})))
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe(gulp.dest(app.build));
@@ -106,7 +115,13 @@ gulp.task('serve', ['build'], function() {
   browserSync.init({
     host: 'localhost',
     port: 8000,
-    server: app.build
+    server: {
+      baseDir: app.build,
+      middleware: require('connect-modrewrite')([
+        '^[^\\.]*$ /index.html [L]'
+      ]),
+      routes: {'/libs': './libs'}
+    }
   });
 
   //gulp.watch(app.scss, ['scss', reload]);
@@ -115,7 +130,7 @@ gulp.task('serve', ['build'], function() {
 
 gulp.task('build', function(callback) {
   runSequence('clean',
-    ['scss', 'js', 'html'],
+    ['scss', 'js', 'html', 'fonts'],
     'inject',
     callback);
 });

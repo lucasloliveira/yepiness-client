@@ -4,6 +4,7 @@
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.6.4",
+    "connect-modrewrite": "^0.7.11",
     "gulp": "^3.8.11",
     "gulp-angular-filesort": "^1.1.1",
     "gulp-angular-templatecache": "^1.6.0",

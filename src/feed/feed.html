@@ -23,7 +23,8 @@
 
   <div class="panel col-md-offset-1 col-md-9">
     <div class="indication-input">
-      <i ng-show="crawling" class="crawling fa fa-spinner fa-spin"/>
+      <i ng-show="crawling" class="crawling fa fa-spinner fa-spin">
+      </i>
       <textarea class="clear-textarea" msd-elastic placeholder="Qual sua dica?" rows="1" ng-model="newYep.content" ng-change="updateYep(newYep.content)">
       </textarea>
       <div class="media indication-content" ng-show="yepContent">

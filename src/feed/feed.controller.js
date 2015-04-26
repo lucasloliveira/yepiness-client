@@ -13,9 +13,6 @@
 
   function Feed($scope, User, YepService, Crawler) {
 
-    $scope.current = 'feed/feed.html';
-
-
     $scope.categories = [
       {
         icon: 'fa-book',
