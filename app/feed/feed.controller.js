@@ -13,6 +13,9 @@
 
   function Feed($scope, User, YepService, Crawler) {
 
+    $scope.current = 'feed/feed.html';
+
+
     $scope.categories = [
       {
         icon: 'fa-book',
@@ -227,9 +230,9 @@
 
     $scope.loadFriends = function($query){
       return $scope.user.friends.filter(function(friend){
-        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;;
       });
-    };
+    }
 
   }
 })();

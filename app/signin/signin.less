@@ -1,7 +1,5 @@
-@import "../variables";
-
 .header-title {
-  color: $yep-primary-color;
+  color: @yep-primary-color;
   text-align: center;
   font-family: Quicksand;
   font-weight: bold;
@@ -52,27 +50,27 @@
 
   &,
   &:focus {
-    background: $yep-action-color;
+    background: @yep-action-color;
     border-radius: 1px;
     border: hidden;
     color: #ffffff;
     margin-top: 12px;
     &:active, &:hover {
-      background: $yep-action-color;
+      background: @yep-action-color;
       color: #ffffff;
     }
   }
 }
 
 .facebook-button {
-  background: $yep-action-color;
+  background: @yep-action-color;
   border-radius: 1px;
   border: hidden;
   color: #ffffff;
   display: block;
   margin-top: 12px;
   &.active, &:hover {
-    background: $yep-action-color;
+    background: @yep-action-color;
     color: #ffffff;
   }
 }
