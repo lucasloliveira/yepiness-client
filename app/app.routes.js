@@ -10,7 +10,10 @@
       .state('home', {
         url: '/',
         templateUrl: 'home/home.html',
-        controller: 'FeedCtrl'
+        controller: 'FeedCtrl',
+        resolve: {
+          authenticate: authenticate
+        }
       })
       .state('profile', {
         url: '/profile/:uid',
@@ -27,5 +30,11 @@
         templateUrl: 'signup/signup.html',
         controller: 'SignupCtrl'
       });
+
+    function authenticate($auth, $state) {
+      return $auth.validateUser().catch(function(){
+        $state.go('signin');
+      });
+    }
   }
 })();

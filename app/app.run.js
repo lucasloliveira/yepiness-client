@@ -24,14 +24,6 @@
       logout();
     });
 
-    //$rootScope.$on('$locationChangeSuccess', function(resp) {
-    //  $auth.validateUser().catch(function (response) {
-    //    console.log(response);
-    //    console.log(resp);
-    //    $state.go('signin');
-    //  });
-    //});
-
     var loggedSuccess = function() {
       $rootScope.logged = true;
     };

@@ -230,9 +230,9 @@
 
     $scope.loadFriends = function($query){
       return $scope.user.friends.filter(function(friend){
-        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;;
+        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
       });
-    }
+    };
 
   }
 })();
