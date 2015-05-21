@@ -51,6 +51,7 @@ gulp.task('scripts', ['lint'], function() {
   return gulp.src(app.scripts)
     .pipe($.ngAnnotate())
     .pipe(gulp.dest(app.build.scripts))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('template', function() {
@@ -63,7 +64,8 @@ gulp.task('template', function() {
       templateHeader: templateHeader,
       templateFooter: templateFooter
     }))
-    .pipe(gulp.dest(app.build.scripts));
+    .pipe(gulp.dest(app.build.scripts))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('constants', function() {
