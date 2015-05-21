@@ -30,7 +30,8 @@ gulp.task('styles', function() {
     .pipe($.sass())
     .pipe($.concatCss('main.css'))
     .pipe($.cssmin())
-    .pipe(gulp.dest(app.build.styles));
+    .pipe(gulp.dest(app.build.styles))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('fonts', function() {
@@ -110,10 +111,21 @@ gulp.task('serve', ['build'], function(){
     port: 8000,
     server: {
       baseDir: [app.build.root],
+      middleware: require('connect-modrewrite')([
+        '^/api/(.*)$ http://localhost:3000/$1 [P]',
+        '^[^\\.]*$ /index.html [L]'
+      ]),
       routes: {'/libs': './libs'}
     }
   });
+
+  gulp.watch(app.styles, ['styles']);
+  gulp.watch(app.scripts, ['js-watch']);
+  gulp.watch(app.html, ['html-watch']);
 });
+
+gulp.task('js-watch', ['scripts'], browserSync.reload);
+gulp.task('html-watch', ['template'], browserSync.reload);
 
 gulp.task('dist', ['build', 'fonts'], function() {
   var assets = $.useref.assets();
@@ -147,7 +159,11 @@ gulp.task('start', ['dist'], function() {
     host: 'localhost',
     port: 8000,
     server: {
-      baseDir: [app.dist]
+      baseDir: [app.dist],
+      middleware: require('connect-modrewrite')([
+        '^/api/(.*)$ http://localhost:3000/$1 [P]',
+        '^[^\\.]*$ /index.html [L]'
+      ])
     }
   });
 });

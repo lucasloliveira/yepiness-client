@@ -1,7 +1,9 @@
 {
   "name": "yepiness",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "connect-rewrite": "0.0.1"
+  },
   "devDependencies": {
     "browser-sync": "^2.6.5",
     "gulp": "^3.8.11",
