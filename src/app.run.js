@@ -5,7 +5,7 @@
     .run(Run);
 
   // @ngInject
-  function Run($rootScope, $auth, $state) {
+  function Run($rootScope, Permission, $auth, $state) {
 
     $rootScope.$on('auth:validation-success', function() {
       loggedSuccess();
@@ -32,5 +32,9 @@
       $state.go('signin');
       $rootScope.logged = false;
     };
+
+    Permission.defineRole('user', function(){
+      return $auth.validateUser();
+    });
   }
 })();

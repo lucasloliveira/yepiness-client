@@ -16,6 +16,7 @@
       'ui.bootstrap',
       'ng-token-auth',
       'monospaced.elastic',
-      'ngTagsInput'
+      'ngTagsInput',
+      'permission'
     ]);
 })();

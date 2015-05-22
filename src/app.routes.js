@@ -11,8 +11,11 @@
         url: '/',
         templateUrl: 'home/home.html',
         controller: 'FeedCtrl',
-        resolve: {
-          authenticate: authenticate
+        data: {
+          permissions: {
+            only: ['user'],
+            redirectTo: 'signin'
+          }
         }
       })
       .state('profile', {
@@ -30,11 +33,5 @@
         templateUrl: 'signup/signup.html',
         controller: 'SignupCtrl'
       });
-
-    function authenticate($auth, $state) {
-      return $auth.validateUser().catch(function(){
-        $state.go('signin');
-      });
-    }
   }
 })();

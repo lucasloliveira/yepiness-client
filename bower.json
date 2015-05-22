@@ -11,7 +11,8 @@
     "bootstrap-social": "~4.8.0",
     "angular-elastic": "~2.4.2",
     "ng-tags-input": "2.3.0",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "angular-permission": "~0.2.0"
   },
   "overrides": {
     "sugar": {

@@ -1,11 +1,9 @@
 {
   "name": "yepiness",
   "version": "0.0.0",
-  "dependencies": {
-    "connect-rewrite": "0.0.1"
-  },
   "devDependencies": {
     "browser-sync": "^2.6.5",
+    "connect-modrewrite": "^0.8.1",
     "gulp": "^3.8.11",
     "gulp-angular-filesort": "^1.1.1",
     "gulp-angular-templatecache": "^1.6.0",
