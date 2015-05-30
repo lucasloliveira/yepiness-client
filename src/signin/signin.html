@@ -3,7 +3,7 @@
 <h1 class="header-title">yepiness!</h1>
 <div layout-align="center center" layout="row" flex>
 
-  <md-card layout-padding flex="20">
+  <md-card layout-padding flex="30">
     <md-input-container flex>
       <label>Email</label>
       <input type="email" ng-model="loginForm.email">
@@ -16,10 +16,18 @@
 
     <md-button flex="50" layout-padding class="md-raised md-primary" ng-click="submitLogin(loginForm)">Login</md-button>
 
+    <md-divider flex="5"></md-divider>
+
     <div layout="row" layout-align="center">
-      <md-button class="md-facebook" layout-align="center" ng-click="authenticate('facebook')">
+      <md-button class="md-facebook" layout-align="center" ng-click="authenticate('facebook')" flex>
         <md-icon md-font-icon="fa fa-facebook fa-2x"></md-icon>
       </md-button>
+    </div>
+
+    <div layout="row">
+      <md-button class="md-primary" ng-href="/signup">Create account</md-button>
+      <span flex></span>
+      <md-button class="md-primary" ng-href="/password">Recover password</md-button>
     </div>
 
   </md-card>
