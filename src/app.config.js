@@ -14,7 +14,7 @@
     .config(Config);
 
   // @ngInject
-  function Config($locationProvider, $urlRouterProvider, $authProvider, ENV) {
+  function Config($locationProvider, $urlRouterProvider, $authProvider, ENV, $mdThemingProvider) {
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false,

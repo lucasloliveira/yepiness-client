@@ -20,6 +20,17 @@
       $state.go('home');
     });
 
+    $rootScope.$on('auth:registration-email-success', function() {
+      loggedSuccess();
+      $state.go('home');
+    });
+
+
+    $rootScope.$on('auth:registration-email-error', function(event, response) {
+
+    });
+
+
     $rootScope.$on('auth:logout-success', function() {
       logout();
     });

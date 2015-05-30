@@ -13,10 +13,8 @@
     .module('app', [
       'config',
       'ui.router',
-      'ui.bootstrap',
       'ng-token-auth',
-      'monospaced.elastic',
-      'ngTagsInput',
-      'permission'
+      'permission',
+      'ngMaterial'
     ]);
 })();

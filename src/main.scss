@@ -24,3 +24,12 @@ body {
   margin-top: 10px;
   margin-bottom: 14px;
 }
+
+.md-input-focused {
+  label {
+    color: $yep-primary-color !important;
+  }
+  .md-input {
+    border-color: $yep-primary-color !important;
+  }
+}
