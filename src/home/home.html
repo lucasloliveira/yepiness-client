@@ -1,15 +1,15 @@
-<md-content>
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h2>
-        <span>yepiness</span>
-      </h2>
-      <span flex></span>
-      <md-button class="md-icon-button" aria-label="Settings" ng-click="signOut()">
-        <md-icon md-font-icon="fa fa-gear fa-2x"></md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>yepiness</span>
+    </h2>
+    <span flex></span>
+    <md-button class="md-icon-button" aria-label="Settings" ng-click="signOut()">
+      <md-icon md-font-icon="fa fa-gear fa-2x"></md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
 
-  <div ng-include="current" ng-cloak></div>
+<md-content ng-include="current" layout="column" flex ng-cloak layout-fill>
+
 </md-content>
