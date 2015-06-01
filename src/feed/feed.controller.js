@@ -87,8 +87,18 @@
       friends: []
     };
 
-    $scope.changeFriends = function(){
-
+    $scope.createChip = function(event, some) {
+      switch(event.keyCode) {
+        case 13:
+          //TODO: Fix this workaround when possible
+          var last = $scope.newYep.friends.length - 1;
+          var newChip = $scope.newYep.friends[last];
+          if(!newChip.name) {
+            $scope.newYep.friends[last] = {
+              name: newChip
+            };
+          }
+      }
     };
 
     $scope.editFriends = function() {
@@ -229,9 +239,21 @@
     };
 
     $scope.loadFriends = function($query){
-      return $scope.user.friends.filter(function(friend){
-        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-      });
+      return [{
+        name: 'Teste',
+        image: 'http://lorempixel.com/50/50/people?0',
+        email: 'email@teste.com'
+      },
+        {
+          name: 'Segundo',
+          image: 'http://lorempixel.com/50/50/people?0',
+          email: 'sec@teste.com'
+        }].filter(function(friend){
+          return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+        });
+      //return $scope.user.friends.filter(function(friend){
+      //  return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+      //});
     };
 
   }
