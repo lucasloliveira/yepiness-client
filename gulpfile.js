@@ -22,11 +22,13 @@ var app = {
 
 gulp.task('clean', function() {
   return gulp.src([app.build.root, app.dist], {read: false})
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.clean());
 });
 
 gulp.task('styles', function() {
   return gulp.src(app.styles)
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.sass())
     .pipe($.concatCss('main.css'))
     .pipe($.cssmin())
@@ -37,18 +39,21 @@ gulp.task('styles', function() {
 gulp.task('fonts', function() {
   return gulp
     .src(app.libs + '/**/*.{eot,svg,ttf,woff,woff2}', {base: app.libs})
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.flatten())
     .pipe(gulp.dest(app.dist + '/fonts'));
 });
 
 gulp.task('lint', function() {
   return gulp.src(app.scripts)
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('scripts', ['lint'], function() {
   return gulp.src(app.scripts)
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.ngAnnotate())
     .pipe(gulp.dest(app.build.scripts))
     .pipe(browserSync.stream());
@@ -58,6 +63,7 @@ gulp.task('template', function() {
   var templateHeader = '(function() { \'use strict\'; angular.module("<%= module %>"<%= standalone %>).run(["$templateCache", function($templateCache) {';
   var templateFooter = '}]) })();';
   return gulp.src(app.html)
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.minifyHtml({empty: true, spare: true, quotes: true}))
     .pipe($.angularTemplatecache('templates.js', {
       module: 'app',
@@ -88,12 +94,14 @@ gulp.task('inject', function() {
 
   var scriptSources = gulp
     .src(app.build.root + '/**/*.js')
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.angularFilesort());
 
   var cssSources = gulp
     .src('build/**/*.css');
 
   return gulp.src(app.src + '/index.html')
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.inject(cssSources, injectOptions))
     .pipe($.inject(scriptSources, injectOptions))
     .pipe(wiredep())
@@ -133,6 +141,7 @@ gulp.task('dist', ['build', 'fonts'], function() {
   var assets = $.useref.assets();
 
   return gulp.src(app.build.root + '/*.html', {base: app.build.root})
+    .pipe($.plumber({errorHandler: onError}))
     .pipe(assets)
     .pipe($.debug())
     .pipe($.if('*.js', $.uglify()))
@@ -147,6 +156,7 @@ gulp.task('useref', function() {
   var assets = $.useref.assets();
 
   return gulp.src(app.build.root + '/*.html', {base: app.build.root})
+    .pipe($.plumber({errorHandler: onError}))
     .pipe(assets)
     .pipe($.debug())
     .pipe($.if('*.js', $.uglify()))
@@ -172,3 +182,8 @@ gulp.task('start', ['dist'], function() {
 
 gulp.task('default', ['build'], function() {
 });
+
+function onError(err) {
+  $.util.log($.util.colors.red('ERROR: ') + $.util.colors.cyan(err.plugin) + ' - ' + err.message);
+  this.emit('end');
+}

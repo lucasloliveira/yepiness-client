@@ -1,45 +1,41 @@
 <md-content flex layout="row" layout-align="center" layout-fill>
   <md-content class="md-padding" flex="50" layout="column" layout-fill>
-    <md-input-container flex="50">
-      <label>What's your tip?</label>
-      <textarea ng-model="newYep.content" ng-change="updateYep(newYep.content)" columns="1"></textarea>
-      <div class="media indication-content" ng-show="yepContent">
-        <div class="media-image pull-left">
-          <a href="#">
-            <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}">
-          </a>
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.title}}</a></h4>
-          <h6 class="url"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.url}}</a></h6>
+    <!--<md-input-container flex="50">-->
+    <!--<label>What's your tip?</label>-->
+    <!--<textarea ng-model="newYep.content" ng-change="updateYep(newYep.content)" columns="1"></textarea>-->
+    <!--<div class="media indication-content" ng-show="yepContent">-->
+    <!--<div class="media-image pull-left">-->
+    <!--<a href="#">-->
+    <!--<img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}">-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="media-body">-->
+    <!--<h4 class="media-heading"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.title}}</a></h4>-->
+    <!--<h6 class="url"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.url}}</a></h6>-->
 
-          <p class="media-description col-md-12">{{newYep.description}}</p>
+    <!--<p class="media-description col-md-12">{{newYep.description}}</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</md-input-container>-->
+    <!--<md-contact-chips ng-model="newYep.friends" md-contacts="loadFriends($query)"-->
+    <!--md-contact-name="name"-->
+    <!--md-contact-image="image"-->
+    <!--md-contact-email="email"-->
+    <!--md-require-match-->
+    <!--ng-keydown="createChip($event, $chip)"-->
+    <!--placeholder="Add friends">-->
+    <!--</md-contact-chips>-->
+    <md-tabs md-dinamic-height md-border-bottom flex="50">
+      <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
+              disabled="tab.disabled">
+        <div ng-repeat="group in groupedIndications">
+          <md-whiteframe class="yep-card md-whiteframe-z1" layout layout-align="center center"
+                         ng-repeat="indication in group.yeps">
+            <img ng-show="indication.image" class="media-object indication-image" ng-src="{{indication.image}}">
+            {{indication.title}}
+          </md-whiteframe>
         </div>
-      </div>
-    </md-input-container>
-    <md-contact-chips ng-model="newYep.friends" md-contacts="loadFriends($query)"
-                      md-contact-name="name"
-                      md-contact-image="image"
-                      md-contact-email="email"
-                      md-require-match
-                      ng-keydown="createChip($event, $chip)"
-                      placeholder="Add friends">
-    </md-contact-chips>
-    <!--<md-tabs md-dinamic-height md-border-bottom flex>-->
-      <!--<md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"-->
-              <!--disabled="tab.disabled" flex>-->
-        <!--<md-list ng-repeat="group in groupedIndications">-->
-          <!--<md-subheader>{{group.date}}</md-subheader>-->
-          <!--<md-list-item ng-repeat="indication in group.yeps">-->
-            <!--<img ng-show="indication.image" class="media-object indication-image" ng-src="{{indication.image}}">-->
-            <!--<div class="md-list-item-text">-->
-              <!--<h3><a ng-href="{{indication.url}}" target="_blank">{{ indication.title }}</a></h3>-->
-              <!--<h4>{{ indication.url }}</h4>-->
-              <!--<p>{{ indication.description }}</p>-->
-            <!--</div>-->
-          <!--</md-list-item>-->
-        <!--</md-list>-->
-      <!--</md-tab>-->
-    <!--</md-tabs>-->
+      </md-tab>
+    </md-tabs>
   </md-content>
 </md-content>

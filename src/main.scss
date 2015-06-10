@@ -1,23 +1,32 @@
 @import "core/variables";
 @import "signin/signin";
 @import "feed/feed";
-@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
 @import url(http://fonts.googleapis.com/css?family=Quicksand);
 
 body {
-  background: rgb(229, 233, 237);
+  background: $gray-blue;
   font-family: 'Noto Sans';
   a {
     cursor: pointer;
   }
 
   .btn-primary {
-    background-color: $yep-action-color;
+    background-color: $blue-teal;
+  }
+}
+
+.home-header {
+  background: $orange-yepiness;
+  font-family: Quicksand;
+  h2 {
+    font-size: xx-large;
+    font-weight: 100;
   }
 }
 
 .header {
-  background-color: $yep-primary-color;
+  background-color: $orange-yepiness;
   min-height: 20px;
 
   .yep-header {
@@ -31,13 +40,17 @@ body {
     }
 
     .dropdown-toggle:active, .open .dropdown-toggle {
-      background-color: $yep-primary-color !important;
+      background-color: $orange-yepiness !important;
     }
   }
 }
 
 md-content.md-default-theme {
   background: rgb(229, 233, 237) !important;
+}
+md-ink-bar {
+  color: $orange-yepiness !important;
+  background: $orange-yepiness !important;
 }
 
 .yepiness-white {
@@ -50,9 +63,9 @@ md-content.md-default-theme {
 
 .md-input-focused {
   label {
-    color: $yep-primary-color !important;
+    color: $orange-yepiness !important;
   }
   .md-input {
-    border-color: $yep-primary-color !important;
+    border-color: $orange-yepiness !important;
   }
 }

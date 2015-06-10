@@ -1,58 +1,20 @@
 @import "../core/variables";
 
-.avatar {
-  max-width: 70px;
-  max-height: 70px;
-  margin: 8px;
+md-tabs {
+  background-color: white;
+  border: solid 1px $gray-disable;
 }
 
-.indication-content {
-  background: #EFF1F5;
-  padding: 4px;
-  order: 4;
-  margin-top: 10px;
-
-  .media-image {
-    min-width: 120px;
-    min-height: 120px;
-
-    .indication-image {
-      max-width: 120px;
-      margin: auto;
-    }
+.md-tab {
+  text-transform: none;
+  color: $silver-chalice !important;
+  font-weight: bold;
+  &.md-active {
+    color: $havelock-blue !important;
   }
+}
 
-  .media-close {
-    margin-right: 4px;
-    margin-top: 4px;
-  }
-
-  .media-body {
-    padding-left: 8px;
-
-    .media-heading > a {
-      color: $yep-primary-color;
-      font-size: 14px;
-      padding-top: 5px;
-      margin: 0 0 2px;
-    }
-
-    .url {
-      color: $yep-action-color;
-      margin-top: 0px;
-      font-weight: bold;
-    }
-
-    .media-description {
-      font-size: 12px;
-      padding: 0;
-    }
-
-  }
-
-  .media-content {
-    padding-top: 8px;
-    font-style: italic;
-    font-size: 12px;
-  }
+.yep-card {
+  background: $gray-card;
+  margin: 22px;
 }
