@@ -30,7 +30,6 @@
     });
 
     $mdThemingProvider.theme('default')
-      .primaryPalette('pink')
       .accentPalette('orange');
   }
 })();
