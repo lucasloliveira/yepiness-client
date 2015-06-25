@@ -29,7 +29,7 @@
       }
     });
 
-    $mdThemingProvider.theme('default')
-      .accentPalette('orange');
+    //$mdThemingProvider.theme('default')
+    //  .accentPalette('orange');
   }
 })();

@@ -8,7 +8,7 @@
     "ng-token-auth": "~0.0.25",
     "font-awesome": "~4.3.0",
     "angular-permission": "~0.2.0",
-    "angular-material": "~0.9.6"
+    "angular-material": "~0.10.0"
   },
   "overrides": {
     "sugar": {

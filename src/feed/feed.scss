@@ -42,4 +42,15 @@ md-tabs {
       font-family: Helvetica, 'Noto Sans', Arial, sans-serif;
     }
   }
+
+  .friends-grid {
+    background: transparent!important;
+
+    > md-grid-list {
+      > md-grid-tile {
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
 }

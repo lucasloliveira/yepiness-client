@@ -1,10 +1,4 @@
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-</md-sidenav>
-<md-content class="md-padding" flex layout-fill layout="column">
-  <md-tabs md-dynamic-height md-border-bottom md-center-tabs="false" flex layout-fill>
-    <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
-            disabled="tab.disabled" flex layout-fill>
-      <div ng-repeat="group in groupedIndications">
+<div ng-repeat="group in groupedIndications">
         <md-whiteframe class="yep-card md-whiteframe-z1" layout layout-padding
                        ng-repeat="indication in group.yeps">
           <div layout="column">
@@ -19,7 +13,7 @@
               </div>
             </div>
             <div layout="row">
-              <md-content style="" flex class="friends-grid">
+              <md-content style="background: transparent!important" flex>
                 <md-grid-list
                   md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
                   md-row-height-gt-md="1:1" md-row-height="4:3"
@@ -36,6 +30,3 @@
           </div>
         </md-whiteframe>
       </div>
-    </md-tab>
-  </md-tabs>
-</md-content>
