@@ -20,7 +20,8 @@
       requireBase: false,
       rewriteLinks: true
     }).hashPrefix('!');
-    $urlRouterProvider.otherwise('/');
+
+    $urlRouterProvider.otherwise('');
 
     $authProvider.configure({
       apiUrl: ENV.apiEndpoint,
@@ -29,7 +30,7 @@
       }
     });
 
-    //$mdThemingProvider.theme('default')
-    //  .accentPalette('orange');
+    $mdThemingProvider.theme('default')
+      .accentPalette('orange');
   }
 })();

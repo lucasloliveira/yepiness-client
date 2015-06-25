@@ -1,5 +1,9 @@
 @import "../core/variables";
 
+.sidenav {
+  background: transparent;
+}
+
 md-tabs {
   background-color: white;
   border: solid 1px $gray-disable;

@@ -7,14 +7,31 @@
   // @ngInject
   function Routes($stateProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
+      .state('user', {
+        url: '',
+        abstract: true,
         templateUrl: 'home/home.html',
-        controller: 'FeedCtrl',
         data: {
           permissions: {
             only: ['user'],
             redirectTo: 'signin'
+          }
+        }
+      })
+      .state('home', {
+        parent: 'user',
+        views: {
+          'header': {
+            templateUrl: 'header/header.html',
+            controller: 'HeaderCtrl'
+          },
+          'sidenav': {
+            templateUrl: 'sidenav/sidenav.html',
+            controller: 'SidenavCtrl'
+          },
+          'feed': {
+            templateUrl: 'feed/feed.html',
+            controller: 'FeedCtrl'
           }
         }
       })

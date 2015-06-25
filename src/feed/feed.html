@@ -1,6 +1,9 @@
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-</md-sidenav>
 <md-content class="md-padding" flex layout-fill layout="column">
+  <md-input-container>
+    <label>Biography</label>
+    <textarea ng-model="user.biography" rows="1" columns="1"></textarea>
+  </md-input-container>
+
   <md-tabs md-dynamic-height md-border-bottom md-center-tabs="false" flex layout-fill>
     <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
             disabled="tab.disabled" flex layout-fill>
