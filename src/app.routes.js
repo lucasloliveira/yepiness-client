@@ -19,6 +19,7 @@
         }
       })
       .state('home', {
+        url: '/',
         parent: 'user',
         views: {
           'header': {
@@ -43,12 +44,24 @@
       .state('signin', {
         url: '/signin',
         templateUrl: 'signin/signin.html',
-        controller: 'SigninCtrl'
+        controller: 'SigninCtrl',
+        data: {
+          permissions: {
+            except: ['user'],
+            redirectTo: 'home'
+          }
+        }
       })
       .state('signup', {
         url: '/signup',
         templateUrl: 'signup/signup.html',
-        controller: 'SignupCtrl'
+        controller: 'SignupCtrl',
+        data: {
+          permissions: {
+            except: ['user'],
+            redirectTo: 'home'
+          }
+        }
       });
   }
 })();
