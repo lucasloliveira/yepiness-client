@@ -1,7 +1,9 @@
 @import "../core/variables";
 
-.sidenav {
-  background: transparent;
+.share-input {
+  textarea.md-input {
+    min-height: 0!important;
+  }
 }
 
 md-tabs {
