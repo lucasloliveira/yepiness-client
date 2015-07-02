@@ -3,24 +3,32 @@
     <label>Share something</label>
     <textarea ng-model="newYep.content" ng-change="updateYep(newYep.content)" rows="1" column="1"></textarea>
   </md-input-container>
+  <md-contact-chips
+    ng-model="newYep.friends"
+    md-contacts="loadFriends($query)"
+    ng-keydown="createChip($event, $chip)"
+    md-contact-name="name"
+    md-contact-image="image"
+    md-contact-email="email"
+    md-search-text-change=" "
+    secondary-placeholder="Add a friend"
+    placeholder="Add a friend">
+  </md-contact-chips>
 
-  <div class="media indication-content" ng-show="yepContent">
-    <div class="clearfix">
-      <a class="pull-right" ng-click="removeYep()"><i class="media-close fa fa-close"></i></a>
-
-      <div class="media-image pull-left">
-        <a href="#">
-          <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}">
-        </a>
+  <md-whiteframe class="md-whiteframe-z1 share-content" ng-show="yepContent" layout-padding>
+    <a class="pull-right remove" ng-click="removeYep()"><i class="media-close fa fa-close"></i></a>
+    <div layout="row">
+      <div flex="20" layout-padding>
+        <img ng-show="newYep.image" class="media-object indication-image" ng-src="{{newYep.image}}">
       </div>
-      <div class="media-body">
-        <h4 class="media-heading"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.title}}</a></h4>
+      <div class="body" flex layout-padding>
+        <h4 class="title"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.title}}</a></h4>
         <h6 class="url"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.url}}</a></h6>
 
-        <p class="media-description col-md-12">{{newYep.description}}</p>
+        <p class="description">{{newYep.description}}</p>
       </div>
     </div>
-  </div>
+  </md-whiteframe>
 
   <md-tabs md-dynamic-height md-border-bottom md-center-tabs="false" flex layout-fill>
     <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"

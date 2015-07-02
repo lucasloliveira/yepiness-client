@@ -238,6 +238,20 @@
       }
     };
 
+    $scope.createChip = function(event, some) {
+      switch(event.keyCode) {
+        case 13:
+          //TODO: Fix this workaround when possible
+          var last = $scope.newYep.friends.length - 1;
+          var newChip = $scope.newYep.friends[last];
+          if(!newChip.name) {
+            $scope.newYep.friends[last] = {
+              name: newChip
+            };
+          }
+      }
+    };
+
     $scope.loadFriends = function($query){
       return [{
         name: 'Teste',

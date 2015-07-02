@@ -6,6 +6,44 @@
   }
 }
 
+.share-content {
+  background-color: white;
+  margin-bottom: 10px;
+  a.remove {
+    margin-right: 4px;
+  }
+  img {
+    max-width: 100px;
+    width: 100%;
+    margin: auto;
+  }
+
+  div {
+    .body {
+      .title {
+        margin: 0;
+        a {
+          color: #de4028;
+          font-size: 14px;
+          padding-top: 5px;
+          margin: 0 0 2px;
+        }
+      }
+      .url {
+        margin: 0;
+        a {
+          color: #428bca;
+          text-decoration: none;
+        }
+      }
+      .description {
+        font-size: 12px;
+        padding: 0;
+      }
+    }
+  }
+}
+
 md-tabs {
   background-color: white;
   border: solid 1px $gray-disable;
