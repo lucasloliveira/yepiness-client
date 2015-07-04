@@ -13,9 +13,15 @@
     -webkit-order: 5;
   }
 
-  .share-chips {
+  .share-settings {
     order: 4;
     -webkit-order: 4;
+    md-select {
+      margin-top: 2px;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 
   .share-content {

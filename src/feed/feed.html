@@ -14,23 +14,26 @@
           <h6 class="url"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.url}}</a></h6>
 
           <p class="description">{{newYep.description}}</p>
+          <md-select placeholder="Category" ng-model="newYep.category">
+            <md-option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</md-option>
+          </md-select>
         </div>
       </div>
     </md-whiteframe>
 
-    <md-contact-chips
-        class="share-chips"
-        ng-show="newYep.content"
-        ng-model="newYep.friends"
-        md-contacts="loadFriends($query)"
-        ng-keydown="createChip($event, $chip)"
-        md-contact-name="name"
-        md-contact-image="image"
-        md-contact-email="email"
-        md-search-text-change=" "
-        secondary-placeholder="Add a friend"
-        placeholder="Add a friend">
-    </md-contact-chips>
+   <div layout="row" class="share-settings" ng-show="newYep.content">
+     <md-contact-chips
+         ng-model="newYep.friends"
+         md-contacts="loadFriends($query)"
+         ng-keydown="createChip($event, $chip)"
+         md-contact-name="name"
+         md-contact-image="image"
+         md-contact-email="email"
+         md-search-text-change=" "
+         secondary-placeholder="Add a friend"
+         placeholder="Add a friend">
+     </md-contact-chips>
+   </div>
 
     <section layout="row" class="share-btn" layout-align="end">
       <md-button ng-show="newYep.content" class="md-primary md-raised" ng-click="create()">Publish</md-button>
