@@ -53,6 +53,15 @@ md-ink-bar {
   background: $orange-yepiness !important;
 }
 
+md-chips .md-chips.md-focused {
+  box-shadow: 0 2px $orange-yepiness!important;
+  padding: 3px;
+}
+
+md-select:not([disabled]):focus .md-select-label {
+  border-bottom-color: $orange-yepiness;
+}
+
 .yepiness-white {
   font-family: "Quicksand", Helvetica, 'Noto Sans', Arial, sans-serif;
   color: white;
@@ -72,4 +81,7 @@ md-ink-bar {
 
 .no-padding {
   padding: 0;
+}
+.left-margin-10 {
+  margin-left: 10px;
 }
