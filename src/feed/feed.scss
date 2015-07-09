@@ -4,6 +4,29 @@
 
   padding-bottom: 2px;
 
+  md-progress-circular {
+    -webkit-font-smoothing: antialiased;
+    order: 2;
+    position: relative;
+    top: -30px;
+    transform-origin: 0px 0px;
+    margin-left: auto;
+    .md-inner {
+      .md-left {
+        .md-half-circle {
+          border-left-color: $orange-yepiness;
+          border-top-color: $orange-yepiness;
+        }
+      }
+      .md-right {
+        .md-half-circle {
+          border-right-color: $orange-yepiness;
+          border-top-color: $orange-yepiness;
+        }
+      }
+    }
+  }
+
   textarea.md-input {
     min-height: 0!important;
   }

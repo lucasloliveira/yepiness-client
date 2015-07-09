@@ -2,6 +2,7 @@
   <md-input-container class="share-input">
     <label>Share something</label>
     <textarea ng-model="newYep.content" ng-change="updateYep(newYep.content)" rows="1" column="1"></textarea>
+    <md-progress-circular md-mode="indeterminate" ng-show="true" md-diameter="22"></md-progress-circular>
 
     <md-whiteframe class="md-whiteframe-z1 share-content" ng-show="yepContent" layout-padding>
       <a class="pull-right remove" ng-click="removeYep()"><i class="media-close fa fa-close"></i></a>
@@ -14,32 +15,27 @@
           <h6 class="url"><a ng-href="{{newYep.url}}" target="_blank">{{newYep.url}}</a></h6>
 
           <p class="description">{{newYep.description}}</p>
-          <md-select placeholder="Category" ng-model="newYep.category">
-            <md-option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</md-option>
-          </md-select>
         </div>
       </div>
     </md-whiteframe>
-
-   <div layout="row" class="share-settings" ng-show="newYep.content">
-     <md-contact-chips
-         ng-model="newYep.friends"
-         md-contacts="loadFriends($query)"
-         ng-keydown="createChip($event, $chip)"
-         md-contact-name="name"
-         md-contact-image="image"
-         md-contact-email="email"
-         md-search-text-change=" "
-         secondary-placeholder="Add a friend"
-         placeholder="Add a friend">
-     </md-contact-chips>
-   </div>
-
-    <section layout="row" class="share-btn" layout-align="end">
-      <md-button ng-show="newYep.content" class="md-primary md-raised" ng-click="create()">Publish</md-button>
-    </section>
   </md-input-container>
-
+  <div layout="row" class="share-settings" ng-show="newYep.content || yepContent">
+    <md-select placeholder="Category" ng-model="newYep.category" class="no-padding">
+      <md-option ng-repeat="cat˙egory in categories" value="{{category.name}}">{{category.name}}</md-option>
+    </md-select>
+    <md-contact-chips
+        ng-model="newYep.friends"
+        md-contacts="loadFriends($query)"
+        ng-keydown="createChip($event, $chip)"
+        md-contact-name="name"
+        md-contact-image="image"
+        md-contact-email="email"
+        md-search-text-change=" "
+        secondary-placeholder="Add a friend"
+        placeholder="Add a friend">
+    </md-contact-chips>
+    <md-button class="md-primary md-raised" ng-click="create()">Publish</md-button>
+  </div>
   <md-tabs md-dynamic-height md-border-bottom md-center-tabs="false" flex layout-fill>
     <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
             disabled="tab.disabled" flex layout-fill>
