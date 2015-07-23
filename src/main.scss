@@ -1,0 +1,87 @@
+@import "variables";
+@import "signin/signin";
+@import "feed/feed";
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Quicksand);
+
+body {
+  background: $gray-blue;
+  font-family: 'Noto Sans', Helvetica, 'Noto Sans', Arial, sans-serif;
+  a {
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: $blue-teal;
+  }
+}
+
+.home-header {
+  background: $orange-yepiness;
+  font-family: "Quicksand", Helvetica, 'Noto Sans', Arial, sans-serif;
+  h2 {
+    font-size: xx-large;
+    font-weight: 100;
+  }
+}
+
+.header {
+  background-color: $orange-yepiness;
+  min-height: 20px;
+
+  .yep-header {
+    vertical-align: middle;
+
+    .dropdown-toggle {
+      color: white;
+      &:focus, &:hover {
+        color: #F0F0F0 !important;
+      }
+    }
+
+    .dropdown-toggle:active, .open .dropdown-toggle {
+      background-color: $orange-yepiness !important;
+    }
+  }
+}
+
+md-content.md-default-theme {
+  background: rgb(229, 233, 237) !important;
+}
+md-ink-bar {
+  color: $orange-yepiness !important;
+  background: $orange-yepiness !important;
+}
+
+md-chips .md-chips.md-focused {
+  box-shadow: 0 2px $orange-yepiness!important;
+  padding: 3px;
+}
+
+md-select:not([disabled]):focus .md-select-label {
+  border-bottom-color: $orange-yepiness;
+}
+
+.yepiness-white {
+  font-family: "Quicksand", Helvetica, 'Noto Sans', Arial, sans-serif;
+  color: white;
+  padding-left: 26px;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+
+.md-input-focused {
+  label {
+    color: $orange-yepiness !important;
+  }
+  .md-input {
+    border-color: $orange-yepiness !important;
+  }
+}
+
+.no-padding {
+  padding: 0;
+}
+.left-margin-10 {
+  margin-left: 10px;
+}

@@ -1,0 +1,42 @@
+@import "../variables";
+
+.header-title {
+  margin: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: $orange-yepiness;
+  font-family: 'Quicksand';
+  font-weight: bold;
+  font-size: 400%;
+}
+
+
+.md-facebook {
+  color:white !important;
+  background-color: #3b5998 !important;
+  md-icon{
+    color: white;
+  }
+}
+
+.facebook-button {
+  background: $blue-teal;
+  border-radius: 1px;
+  border: hidden;
+  color: #ffffff;
+  display: block;
+  margin-top: 12px;
+  &.active, &:hover {
+    background: $blue-teal;
+    color: #ffffff;
+  }
+}
+
+.divider {
+  margin-top: 6px;
+  p {
+    text-align: center;
+    font-size: large;
+  }
+}

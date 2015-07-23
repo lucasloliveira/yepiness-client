@@ -1,0 +1,33 @@
+<nav class="header">
+</nav>
+<h1 class="header-title">yepiness!</h1>
+<div layout-align="center center" layout="row" flex>
+
+  <md-card layout-padding flex="30">
+    <md-input-container flex>
+      <label>Email</label>
+      <input type="email" ng-model="registrationForm.email">
+    </md-input-container>
+
+    <md-input-container flex>
+      <label>Password</label>
+      <input type="password" ng-model="registrationForm.password">
+    </md-input-container>
+
+    <md-input-container flex>
+      <label>Confirm password</label>
+      <input type="password" ng-model="registrationForm.password_confirmation">
+    </md-input-container>
+
+    <md-button flex="50" layout-padding class="md-raised md-primary" ng-click="submitRegistration(registrationForm)">Signup</md-button>
+
+    <md-divider flex="5"></md-divider>
+
+    <div layout="row">
+      <md-button class="md-primary" ng-href="/signin">Signin</md-button>
+      <span flex></span>
+      <md-button class="md-primary" ng-href="/password">Recover password</md-button>
+    </div>
+
+  </md-card>
+</div>

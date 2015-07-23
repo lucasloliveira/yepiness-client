@@ -1,0 +1,15 @@
+<md-sidenav class="md-sidenav-left sidenav" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" layout-padding>
+  <div layout="row" layout-align="start end" class="user-profile">
+    <img class="picture" ng-src="{{user.image}}?type=normal"/>
+    <div class="info">
+      <span class="name">{{user.name}}</span>
+    </div>
+  </div>
+  <div layout="column" class="categories">
+    <span class="title">Categories</span>
+
+    <ul class="list">
+      <li class="item" ng-repeat="category in categories track by category.id">{{category.title}}</li>
+    </ul>
+  </div>
+</md-sidenav>
