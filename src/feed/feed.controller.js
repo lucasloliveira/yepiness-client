@@ -11,81 +11,17 @@
   angular.module('app')
     .controller('FeedCtrl', Feed);
 
-  function Feed($scope, User, YepService, Crawler) {
+  function Feed($scope, User, YepService, Crawler, CategoryService) {
 
     $scope.current = 'feed/feed.html';
-
-
-    $scope.categories = [
-      {
-        icon: 'fa-book',
-        name: 'Books/HQ/Manga'
-      },
-      {
-        icon: 'fa-film',
-        name: 'Movies'
-      },
-      {
-        icon: 'fa-cc',
-        name: 'TV series/Cartoons/Animes'
-      },
-      {
-        icon: 'fa-youtube-play',
-        name: 'Videos'
-      },
-      {
-        icon: 'fa-music',
-        name: 'Musics'
-      },
-      {
-        icon: 'fa-microphone',
-        name: 'Podcasts'
-      },
-      {
-        icon: 'fa-gamepad',
-        name: 'Games'
-      },
-      {
-        icon: 'fa-mobile',
-        name: 'Apps/Tools'
-      },
-      {
-        icon: 'fa-map-marker',
-        name: 'Places'
-      },
-      {
-        icon: 'fa-university',
-        name: 'Stuff/Brands'
-      },
-      {
-        icon: 'fa-bookmark',
-        name: 'Articles'
-      },
-      {
-        icon: 'fa-beer',
-        name: 'Events'
-      },
-      {
-        icon: 'fa-graduation-cap',
-        name: 'Courses'
-      },
-      {
-        icon: 'fa-motorcycle',
-        name: 'Sports/Activities'
-      },
-      {
-        icon: 'fa-star',
-        name: 'References'
-      },
-      {
-        icon: 'fa-users',
-        name: 'People/Services'
-      }
-    ];
 
     $scope.newYep = {
       friends: []
     };
+
+    CategoryService.list().then(function(response) {
+      $scope.categories = response.data;
+    });
 
     $scope.createChip = function(event, some) {
       switch(event.keyCode) {

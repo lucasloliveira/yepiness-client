@@ -21,7 +21,7 @@
   </md-input-container>
   <div layout="row" class="share-settings" ng-show="newYep.content || yepContent">
     <md-select placeholder="Category" ng-model="newYep.category" class="no-padding">
-      <md-option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</md-option>
+      <md-option ng-repeat="category in categories" value="{{category.title}}"><i class="fa" ng-class="category.icon"></i> {{category.title}}</md-option>
     </md-select>
     <md-contact-chips
         class="left-margin-10"
