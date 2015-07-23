@@ -16,7 +16,7 @@
 
     CategoryService.list().then(function(response){
       $scope.categories = response.data;
-    })
+    });
   }
 
 })();
