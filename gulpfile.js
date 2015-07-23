@@ -74,12 +74,23 @@ gulp.task('template', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('constants', function() {
+gulp.task('constants:dev', function() {
   var configFile = require('./' + app.src + '/config.json');
 
   return $.ngConstant({
     name: 'config',
     constants: configFile['development'],
+    stream: true
+  })
+    .pipe(gulp.dest(app.build.scripts));
+});
+
+gulp.task('constants:prod', function() {
+  var configFile = require('./' + app.src + '/config.json');
+
+  return $.ngConstant({
+    name: 'config',
+    constants: configFile['production'],
     stream: true
   })
     .pipe(gulp.dest(app.build.scripts));
@@ -108,14 +119,21 @@ gulp.task('inject', function() {
     .pipe(gulp.dest(app.build.root));
 });
 
-gulp.task('build', function(callback){
+gulp.task('build:dev', function(callback){
   runSequence('clean',
-    ['styles', 'scripts', 'template', 'constants'],
+    ['styles', 'scripts', 'template', 'constants:dev'],
     'inject',
     callback);
 });
 
-gulp.task('serve', ['build'], function(){
+gulp.task('build:prod', function(callback){
+  runSequence('clean',
+    ['styles', 'scripts', 'template', 'constants:prod'],
+    'inject',
+    callback);
+});
+
+gulp.task('serve', ['build:dev'], function(){
   browserSync.init({
     host: 'localhost',
     port: 8000,
@@ -137,7 +155,7 @@ gulp.task('serve', ['build'], function(){
 gulp.task('js-watch', ['scripts'], browserSync.reload);
 gulp.task('html-watch', ['template'], browserSync.reload);
 
-gulp.task('dist', ['build', 'fonts'], function() {
+gulp.task('dist', ['build:prod', 'fonts'], function() {
   var assets = $.useref.assets();
 
   return gulp.src(app.build.root + '/*.html', {base: app.build.root})
@@ -180,7 +198,7 @@ gulp.task('start', ['dist'], function() {
   });
 });
 
-gulp.task('default', ['build'], function() {
+gulp.task('default', ['build:dev'], function() {
 });
 
 function onError(err) {
