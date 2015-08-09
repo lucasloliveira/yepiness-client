@@ -13,9 +13,7 @@
 
   // @ngInject
   function Sidenav($auth, $scope, categories) {
-
     $scope.categories = categories.data;
-
   }
 
 })();

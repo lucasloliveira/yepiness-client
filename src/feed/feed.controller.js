@@ -12,10 +12,8 @@
     .controller('FeedCtrl', Feed);
 
   function Feed($scope, User, YepService, Crawler, categories) {
-
     $scope.categories = categories.data;
     $scope.current = 'feed/feed.html';
-
 
     $scope.newYep = {
       friends: []
