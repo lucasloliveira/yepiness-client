@@ -11,77 +11,11 @@
   angular.module('app')
     .controller('FeedCtrl', Feed);
 
-  function Feed($scope, User, YepService, Crawler) {
+  function Feed($scope, User, YepService, Crawler, categories) {
 
+    $scope.categories = categories.data;
     $scope.current = 'feed/feed.html';
 
-
-    $scope.categories = [
-      {
-        icon: 'fa-book',
-        name: 'Books/HQ/Manga'
-      },
-      {
-        icon: 'fa-film',
-        name: 'Movies'
-      },
-      {
-        icon: 'fa-cc',
-        name: 'TV series/Cartoons/Animes'
-      },
-      {
-        icon: 'fa-youtube-play',
-        name: 'Videos'
-      },
-      {
-        icon: 'fa-music',
-        name: 'Musics'
-      },
-      {
-        icon: 'fa-microphone',
-        name: 'Podcasts'
-      },
-      {
-        icon: 'fa-gamepad',
-        name: 'Games'
-      },
-      {
-        icon: 'fa-mobile',
-        name: 'Apps/Tools'
-      },
-      {
-        icon: 'fa-map-marker',
-        name: 'Places'
-      },
-      {
-        icon: 'fa-university',
-        name: 'Stuff/Brands'
-      },
-      {
-        icon: 'fa-bookmark',
-        name: 'Articles'
-      },
-      {
-        icon: 'fa-beer',
-        name: 'Events'
-      },
-      {
-        icon: 'fa-graduation-cap',
-        name: 'Courses'
-      },
-      {
-        icon: 'fa-motorcycle',
-        name: 'Sports/Activities'
-      },
-      {
-        icon: 'fa-star',
-        name: 'References'
-      },
-      {
-        icon: 'fa-users',
-        name: 'People/Services'
-      }
-    ];
 
     $scope.newYep = {
       friends: []
@@ -99,10 +33,6 @@
             };
           }
       }
-    };
-
-    $scope.editFriends = function() {
-      $scope.selectFriends = $scope.selectFriends ? false : true;
     };
 
     $scope.create = function(){
@@ -165,34 +95,8 @@
       $scope.newYep.image = undefined;
     };
 
-    $scope.selectCategory = function(category) {
-      $scope.newYep.category = category;
-    };
-
-    $scope.removeCategory = function() {
-      $scope.newYep.category = undefined;
-    };
-
-    $scope.acceptFriend = function(request) {
-      User.acceptFriend(request.id).success(function(obj) {
-
-      });
-    };
-
-    $scope.declineFriend = function(request) {
-      console.log(request);
-    };
-
-    User.friendsCount().success(function(resp){
-      $scope.user.friendsCount = resp;
-    });
-
     User.friends().success(function(response) {
       $scope.user.friends = response;
-    });
-
-    User.receivedRequests().success(function(obj) {
-      $scope.friendRequests = obj.response;
     });
 
     /// YEPCONTROLLER METHODS
@@ -253,21 +157,9 @@
     };
 
     $scope.loadFriends = function($query){
-      return [{
-        name: 'Teste',
-        image: 'http://lorempixel.com/50/50/people?0',
-        email: 'email@teste.com'
-      },
-        {
-          name: 'Segundo',
-          image: 'http://lorempixel.com/50/50/people?0',
-          email: 'sec@teste.com'
-        }].filter(function(friend){
-          return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-        });
-      //return $scope.user.friends.filter(function(friend){
-      //  return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-      //});
+      return $scope.user.friends.filter(function(friend){
+        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+      });
     };
 
   }

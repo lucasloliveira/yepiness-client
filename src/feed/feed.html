@@ -21,7 +21,7 @@
   </md-input-container>
   <div layout="row" class="share-settings" ng-show="newYep.content || yepContent">
     <md-select placeholder="Category" ng-model="newYep.category" class="no-padding">
-      <md-option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</md-option>
+      <md-option ng-repeat="category in categories" ng-value="category">{{category.title}}</md-option>
     </md-select>
     <md-contact-chips
         class="left-margin-10"
@@ -42,19 +42,21 @@
       <div ng-repeat="group in groupedIndications">
         <md-whiteframe class="yep-card md-whiteframe-z1" layout layout-padding
                        ng-repeat="indication in group.yeps">
-          <div layout="column">
+          <div layout="column" flex>
             <div layout="row">
               <div flex="20">
                 <img ng-show="indication.image" class="indication-image" ng-src="{{indication.image}}">
               </div>
               <div flex>
                 <p class="title">{{indication.title}}</p>
+                <p class="category">{{indication.category.title}}</p>
                 <p class="description">{{indication.description}}</p>
+                <p class="contennt">{{indication.content}}</p>
                 <a>{{indication.url}}</a>
               </div>
             </div>
             <div layout="row">
-              <md-content style="" flex class="friends-grid">
+              <md-content flex class="friends-grid">
                 <md-grid-list
                   md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
                   md-row-height-gt-md="1:1" md-row-height="1:1"
