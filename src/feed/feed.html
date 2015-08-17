@@ -46,32 +46,24 @@
             <div layout="row">
               <div flex="20">
                 <img ng-show="indication.image" class="indication-image" ng-src="{{indication.image}}">
+                <md-grid-list md-cols="4" md-row-height="50px">
+                  <md-grid-tile
+                      ng-repeat="user in indication.users"
+                      ng-style="{'background-image': 'url({{user.image}})'}"
+                      md-colspan-gt-sm="1"
+                      md-rowspan-gt-sm="1">
+                  </md-grid-tile>
+                </md-grid-list>
               </div>
               <div flex>
                 <p class="title">{{indication.title}}</p>
                 <p class="category">{{indication.category.title}}</p>
                 <p class="description">{{indication.description}}</p>
-                <p class="contennt">{{indication.content}}</p>
                 <a>{{indication.url}}</a>
                 <div>
                   {{indication.content}}
                 </div>
               </div>
-            </div>
-            <div layout="row">
-              <md-content flex class="friends-grid">
-                <md-grid-list
-                  md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
-                  md-row-height-gt-md="1:1" md-row-height="1:1"
-                  md-gutter-gt-md="2px" md-gutter-gt-sm="1px" md-gutter="1px">
-                  <md-grid-tile
-                    ng-repeat="user in indication.users"
-                    ng-style="{'background-image': 'url({{user.image}})'}"
-                    md-colspan-gt-sm="1"
-                    md-rowspan-gt-sm="1">
-                  </md-grid-tile>
-                </md-grid-list>
-              </md-content>
             </div>
           </div>
         </md-whiteframe>
