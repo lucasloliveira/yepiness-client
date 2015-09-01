@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "sugar": "~1.4.1",
-    "angular": "1.4.0",
+    "angular": "1.4.5",
     "angular-ui-router": "~0.2.15",
     "ng-token-auth": "~0.0.25",
     "font-awesome": "~4.3.0",
@@ -17,6 +17,6 @@
   },
   "appPath": "app",
   "resolutions": {
-    "angular": "1.4.3"
+    "angular": "1.4.5"
   }
 }
