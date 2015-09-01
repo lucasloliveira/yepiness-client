@@ -17,6 +17,7 @@
     text-align: left;
     bottom: 0;
     padding-top: 31px;
+    float: right;
 
     .name {
       font-size: 12px;
@@ -28,6 +29,7 @@
       padding-left: 10px;
       font-size: 12px;
       color: $silver-chalice;
+      display: block;
     }
   }
 }
