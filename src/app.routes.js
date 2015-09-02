@@ -28,11 +28,21 @@
           },
           'sidenav': {
             templateUrl: 'sidenav/sidenav.html',
-            controller: 'SidenavCtrl'
+            controller: 'SidenavCtrl',
+            resolve: {
+              categories: function(Category) {
+                return Category.list();
+              }
+            }
           },
           'feed': {
             templateUrl: 'feed/feed.html',
-            controller: 'FeedCtrl'
+            controller: 'FeedCtrl',
+            resolve: {
+              categories: function(Category) {
+                return Category.list();
+              }
+            }
           }
         }
       })

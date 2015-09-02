@@ -21,7 +21,7 @@
   </md-input-container>
   <div layout="row" class="share-settings" ng-show="newYep.content || yepContent">
     <md-select placeholder="Category" ng-model="newYep.category" class="no-padding">
-      <md-option ng-repeat="category in categories" value="{{category}}"><i class="fa" ng-class="category.icon"></i> {{category.title}}</md-option>
+      <md-option ng-repeat="category in categories" ng-value="category"><i class="fa" ng-class="category.icon"></i> {{category.title}}</md-option>
     </md-select>
     <md-contact-chips
         class="left-margin-10"
@@ -39,41 +39,37 @@
   <md-tabs md-dynamic-height md-border-bottom md-center-tabs="false" flex layout-fill>
     <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
             disabled="tab.disabled" flex layout-fill>
-      <div ng-repeat="group in groupedIndications">
-        <md-whiteframe class="yep-card md-whiteframe-z1" layout layout-padding
-                       ng-repeat="indication in group.yeps">
-          <div layout="column">
-            <div layout="row">
-              <div flex="20">
-                <img ng-show="indication.image" class="indication-image" ng-src="{{indication.image}}">
-              </div>
-              <div flex>
-                <p class="title">{{indication.title}}</p>
-                <p class="description">{{indication.description}}</p>
-                <a>{{indication.url}}</a>
-                <div>
-                  {{indication.content}}
-                </div>
-              </div>
-            </div>
-            <div layout="row">
-              <md-content style="" flex class="friends-grid">
-                <md-grid-list
-                  md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
-                  md-row-height-gt-md="1:1" md-row-height="1:1"
-                  md-gutter-gt-md="2px" md-gutter-gt-sm="1px" md-gutter="1px">
-                  <md-grid-tile
+      <md-whiteframe class="yep-card md-whiteframe-z1" layout layout-padding
+                     ng-repeat="indication in groupedIndications">
+        <div layout="column" flex>
+          <div layout="row">
+            <div flex="20">
+              <img class="indication-image" ng-src="{{ indication.image || '/images/yep_placeholder.png'}}">
+              <md-grid-list md-cols="4" md-row-height="40px">
+                <md-grid-tile
                     ng-repeat="user in indication.users"
                     ng-style="{'background-image': 'url({{user.image}})'}"
                     md-colspan-gt-sm="1"
                     md-rowspan-gt-sm="1">
-                  </md-grid-tile>
-                </md-grid-list>
-              </md-content>
+                </md-grid-tile>
+              </md-grid-list>
+            </div>
+            <div flex>
+              <p class="title">{{indication.title}}</p>
+              <md-select placeholder="Add a category" ng-model="indication.category" ng-change="updateCategory(indication)">
+                <md-option ng-repeat="category in categories" ng-value="category" ng-selected="{{category.id === indication.category.id}}"><i class="fa" ng-class="category.icon"></i> {{category.title}}</md-option>
+                <md-select-label ng-if="indication.category"><i class="fa" ng-class="indication.category.icon"></i> {{indication.category.title}}</md-select-label>
+                <md-select-label ng-if="!indication.category">Add a category</md-select-label>
+              </md-select>
+              <p class="description">{{indication.description}}</p>
+              <a>{{indication.url}}</a>
+              <div>
+                {{indication.content}}
+              </div>
             </div>
           </div>
-        </md-whiteframe>
-      </div>
+        </div>
+      </md-whiteframe>
     </md-tab>
   </md-tabs>
 </md-content>

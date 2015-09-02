@@ -12,11 +12,8 @@
     .controller('SidenavCtrl', Sidenav);
 
   // @ngInject
-  function Sidenav($scope, CategoryService) {
-
-    CategoryService.list().then(function(response){
-      $scope.categories = response.data;
-    });
+  function Sidenav($auth, $scope, categories) {
+    $scope.categories = categories.data;
   }
 
 })();

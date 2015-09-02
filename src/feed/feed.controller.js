@@ -11,17 +11,13 @@
   angular.module('app')
     .controller('FeedCtrl', Feed);
 
-  function Feed($scope, User, YepService, Crawler, CategoryService) {
-
+  function Feed($scope, User, YepService, Crawler, categories) {
+    $scope.categories = categories.data;
     $scope.current = 'feed/feed.html';
 
     $scope.newYep = {
       friends: []
     };
-
-    CategoryService.list().then(function(response) {
-      $scope.categories = response.data;
-    });
 
     $scope.createChip = function(event, some) {
       switch(event.keyCode) {
@@ -37,36 +33,16 @@
       }
     };
 
-    $scope.editFriends = function() {
-      $scope.selectFriends = $scope.selectFriends ? false : true;
-    };
-
     $scope.create = function(){
       YepService.create($scope.newYep).success(function(response){
-        var createdDate = new Date(response.created_at).format('{Weekday} {d} {Month}, {yyyy}', 'pt');
-        var found = false;
-        $scope.groupedIndicationsSent.forEach(function(grouped){
-          if(grouped.date === createdDate) {
-            found = true;
-            grouped.yeps.push(response);
-            grouped.yeps = grouped.yeps.sortBy(function(yep){
-              return new Date(yep.created_at).getTime();
-            }, true);
-          }
-        });
-        if(!found) {
-          $scope.groupedIndicationsSent.push({
-            date: createdDate,
-            yeps: [response]
-          });
-        }
+
+        $scope.groupedIndicationsSent.add(response, 0);
 
         $scope.newYep = {
           friends: []
         };
         $scope.yepContent = undefined;
       }).error(function(response){
-        console.log(response);
       });
     };
 
@@ -101,34 +77,14 @@
       $scope.newYep.image = undefined;
     };
 
-    $scope.selectCategory = function(category) {
-      $scope.newYep.category = category;
-    };
-
-    $scope.removeCategory = function() {
-      $scope.newYep.category = undefined;
-    };
-
-    $scope.acceptFriend = function(request) {
-      User.acceptFriend(request.id).success(function(obj) {
-
+    $scope.updateCategory = function(yep) {
+      YepService.update(yep).success(function(response) {
+        console.log('success!');
       });
     };
 
-    $scope.declineFriend = function(request) {
-      console.log(request);
-    };
-
-    User.friendsCount().success(function(resp){
-      $scope.user.friendsCount = resp;
-    });
-
     User.friends().success(function(response) {
       $scope.user.friends = response;
-    });
-
-    User.receivedRequests().success(function(obj) {
-      $scope.friendRequests = obj.response;
     });
 
     /// YEPCONTROLLER METHODS
@@ -138,12 +94,12 @@
     ];
 
     YepService.sent().success(function(response) {
-      $scope.groupedIndicationsSent = groupYeps(response);
+      $scope.groupedIndicationsSent = response;
       $scope.populateYeps();
     });
 
     YepService.received().success(function(response) {
-      $scope.groupedIndicationsReceived = groupYeps(response);
+      $scope.groupedIndicationsReceived = response;
       $scope.populateYeps();
     });
 
@@ -189,21 +145,9 @@
     };
 
     $scope.loadFriends = function($query){
-      return [{
-        name: 'Teste',
-        image: 'http://lorempixel.com/50/50/people?0',
-        email: 'email@teste.com'
-      },
-        {
-          name: 'Segundo',
-          image: 'http://lorempixel.com/50/50/people?0',
-          email: 'sec@teste.com'
-        }].filter(function(friend){
-          return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-        });
-      //return $scope.user.friends.filter(function(friend){
-      //  return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-      //});
+      return $scope.user.friends.filter(function(friend){
+        return friend.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+      });
     };
 
   }
