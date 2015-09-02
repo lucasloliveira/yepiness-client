@@ -43,7 +43,7 @@
     img {
       max-width: 100px;
       width: 100%;
-      margin: auto;
+      //margin: auto;
     }
 
     div {
@@ -133,6 +133,12 @@ md-tabs {
       color: $havelock-blue;
       font-size: 12px;
       font-family: Helvetica, 'Noto Sans', Arial, sans-serif;
+    }
+
+    > md-select {
+      > md-select-label > i {
+        padding: 10px;
+      }
     }
   }
 

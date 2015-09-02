@@ -9,6 +9,7 @@ var runSequence = require('run-sequence');
 var app = {
   src: 'src',
   styles: 'src/**/*.scss',
+  images: 'src/images/*',
   scripts: 'src/**/*.js',
   html: 'src/**/*.html',
   dist: 'dist',
@@ -16,7 +17,8 @@ var app = {
   build: {
     root: 'build',
     styles: 'build/styles',
-    scripts: 'build/scripts'
+    scripts: 'build/scripts',
+    images: 'build/images'
   }
 };
 
@@ -57,6 +59,12 @@ gulp.task('scripts', ['lint'], function() {
     .pipe($.ngAnnotate())
     .pipe(gulp.dest(app.build.scripts))
     .pipe(browserSync.stream());
+});
+
+gulp.task('images', function() {
+  gulp.src(app.images)
+    .pipe($.image())
+    .pipe(gulp.dest(app.build.images));
 });
 
 gulp.task('template', function() {
@@ -121,7 +129,7 @@ gulp.task('inject', function() {
 
 gulp.task('build:dev', function(callback){
   runSequence('clean',
-    ['styles', 'scripts', 'template', 'constants:dev'],
+    ['images', 'styles', 'scripts', 'template', 'constants:dev'],
     'inject',
     callback);
 });
@@ -148,6 +156,7 @@ gulp.task('serve', ['build:dev'], function(){
   });
 
   gulp.watch(app.styles, ['styles']);
+  gulp.watch(app.images, ['images']);
   gulp.watch(app.scripts, ['js-watch']);
   gulp.watch(app.html, ['html-watch']);
 });

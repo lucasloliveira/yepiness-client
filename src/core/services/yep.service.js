@@ -14,6 +14,12 @@
       });
     };
 
+    this.update = function(yep) {
+      return $http.put(ENV.apiEndpoint + base, {
+        yep: yep
+      })
+    };
+
     this.sent = function() {
       return $http.get(ENV.apiEndpoint + base + '/sent');
     };

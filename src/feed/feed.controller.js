@@ -35,30 +35,14 @@
 
     $scope.create = function(){
       YepService.create($scope.newYep).success(function(response){
-        var createdDate = new Date(response.created_at).format('{Weekday} {d} {Month}, {yyyy}', 'pt');
-        var found = false;
-        $scope.groupedIndicationsSent.forEach(function(grouped){
-          if(grouped.date === createdDate) {
-            found = true;
-            grouped.yeps.push(response);
-            grouped.yeps = grouped.yeps.sortBy(function(yep){
-              return new Date(yep.created_at).getTime();
-            }, true);
-          }
-        });
-        if(!found) {
-          $scope.groupedIndicationsSent.push({
-            date: createdDate,
-            yeps: [response]
-          });
-        }
+
+        $scope.groupedIndicationsSent.add(response, 0);
 
         $scope.newYep = {
           friends: []
         };
         $scope.yepContent = undefined;
       }).error(function(response){
-        console.log(response);
       });
     };
 
@@ -93,6 +77,12 @@
       $scope.newYep.image = undefined;
     };
 
+    $scope.updateCategory = function(yep) {
+      YepService.update(yep).success(function(response) {
+        console.log('success!');
+      });
+    };
+
     User.friends().success(function(response) {
       $scope.user.friends = response;
     });
@@ -104,12 +94,12 @@
     ];
 
     YepService.sent().success(function(response) {
-      $scope.groupedIndicationsSent = groupYeps(response);
+      $scope.groupedIndicationsSent = response;
       $scope.populateYeps();
     });
 
     YepService.received().success(function(response) {
-      $scope.groupedIndicationsReceived = groupYeps(response);
+      $scope.groupedIndicationsReceived = response;
       $scope.populateYeps();
     });
 
