@@ -56,11 +56,11 @@
             </div>
             <div flex>
               <p class="title">{{indication.title}}</p>
-              <md-select placeholder="Add a category" ng-model="indication.category" ng-change="updateCategory(indication)">
-                <md-option ng-repeat="category in categories" ng-value="category" ng-selected="{{category.id === indication.category.id}}"><i class="fa" ng-class="category.icon"></i> {{category.title}}</md-option>
-                <md-select-label ng-if="indication.category"><i class="fa" ng-class="indication.category.icon"></i> {{indication.category.title}}</md-select-label>
-                <md-select-label ng-if="!indication.category">Add a category</md-select-label>
-              </md-select>
+              <div layout="column" layout-align="start start">
+                <md-select placeholder="Add a category" ng-model="indication.category" ng-change="updateCategory(indication)">
+                  <md-option ng-repeat="category in categories" ng-value="category" ng-selected="{{category.id === indication.category.id}}"><i class="fa" ng-class="category.icon"></i> {{category.title}}</md-option>
+                </md-select>
+              </div>
               <p class="description">{{indication.description}}</p>
               <a>{{indication.url}}</a>
               <div>
