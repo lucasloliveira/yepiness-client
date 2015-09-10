@@ -43,18 +43,18 @@
                      ng-repeat="indication in tab.indications">
         <div layout="column" flex>
           <div layout="row">
-            <div flex="20">
+            <div>
               <img class="indication-image" ng-src="{{ indication.image || '/images/yep_placeholder.png'}}">
-              <md-grid-list md-cols="4" md-row-height="40px">
+              <md-grid-list class="friends" md-cols="3" md-row-height="1:1">
                 <md-grid-tile
                     ng-repeat="user in indication.users"
                     ng-style="{'background-image': 'url({{user.image}})'}"
-                    md-colspan-gt-sm="1"
-                    md-rowspan-gt-sm="1">
+                    md-colspan="1"
+                    md-rowspan="1">
                 </md-grid-tile>
               </md-grid-list>
             </div>
-            <div flex>
+            <div flex class="yep-content">
               <p class="title">{{indication.title}}</p>
               <div layout="column" layout-align="start start">
                 <md-select placeholder="Add a category" ng-model="indication.category" ng-change="updateCategory(indication)">

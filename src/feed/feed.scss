@@ -116,45 +116,48 @@ md-tabs {
       width: 100%;
       margin: auto;
     }
-    
-    .title {
-      font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
-      font-size: 18px;
-      color: $mirage;
-      font-weight: bold;
-      margin: 0;
-    }
 
-    md-select {
-      margin: 10px 0 12px 0;
-    }
-
-    .description {
-      font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
-      font-size: 12px;
-      color: $mirage;
-    }
-    a {
-      color: $havelock-blue;
-      font-size: 12px;
-      font-family: Helvetica, 'Noto Sans', Arial, sans-serif;
-    }
-
-    > md-select {
-      > md-select-label > i {
-        padding: 10px;
-      }
-    }
-  }
-
-  .friends-grid {
-    background: transparent!important;
-
-    > md-grid-list {
-      > md-grid-tile {
-        background-repeat: no-repeat;
+    md-grid-list {
+      md-grid-tile {
         background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
       }
+    }
+
+    .yep-content {
+
+      margin-left: 26px;
+
+      .title {
+        font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        color: $mirage;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      md-select {
+        margin: 10px 0 12px 0;
+      }
+
+      .description {
+        font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: $mirage;
+      }
+      a {
+        color: $havelock-blue;
+        font-size: 12px;
+        font-family: Helvetica, 'Noto Sans', Arial, sans-serif;
+      }
+
+      > md-select {
+        > md-select-label > i {
+          padding: 10px;
+        }
+      }
+
     }
   }
 }

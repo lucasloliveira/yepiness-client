@@ -14,15 +14,15 @@
       <input type="password" ng-model="loginForm.password">
     </md-input-container>
 
-    <md-button flex="50" layout-padding class="md-raised md-primary" ng-click="submitLogin(loginForm)">Login</md-button>
 
-    <md-divider flex="5"></md-divider>
 
-    <div layout="row" layout-align="center">
-      <md-button class="md-facebook" layout-align="center" ng-click="authenticate('facebook')" flex>
-        <md-icon md-font-icon="fa fa-facebook fa-2x"></md-icon>
-      </md-button>
-    </div>
+    <md-button flex="50" layout-padding class="md-raised md-primary margin-top-60" ng-click="submitLogin(loginForm)">Login</md-button>
+
+    <md-divider></md-divider>
+
+    <md-button class="md-facebook" layout-padding layout-align="center" ng-click="authenticate('facebook')" flex>
+      <md-icon md-font-icon="fa fa-facebook fa-2x"></md-icon>
+    </md-button>
 
     <div layout="row">
       <md-button class="md-primary" ng-href="/signup">Create account</md-button>
