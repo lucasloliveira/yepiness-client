@@ -93,14 +93,12 @@
       {title: 'My Indications', type: 'sent'}
     ];
 
-    YepService.sent().success(function(response) {
-      $scope.groupedIndicationsSent = response;
-      $scope.populateYeps();
+    YepService.received().success(function(response) {
+      $scope.tabs[0].indications = response;
     });
 
-    YepService.received().success(function(response) {
-      $scope.groupedIndicationsReceived = response;
-      $scope.populateYeps();
+    YepService.sent().success(function(response) {
+      $scope.tabs[1].indications = response;
     });
 
     var groupYeps = function(list) {
@@ -117,18 +115,18 @@
       return yeps;
     };
 
-    $scope.changeTab = function(tab) {
-      $scope.abaSelecionada = tab.type;
-      $scope.populateYeps();
-    };
+    //$scope.changeTab = function(tab) {
+    //  $scope.abaSelecionada = tab.type;
+    //  //$scope.populateYeps();
+    //};
 
-    $scope.populateYeps = function() {
-      if($scope.abaSelecionada === 'received') {
-        $scope.groupedIndications = $scope.groupedIndicationsReceived;
-      } else {
-        $scope.groupedIndications = $scope.groupedIndicationsSent;
-      }
-    };
+    //$scope.populateYeps = function() {
+    //  if($scope.abaSelecionada === 'received') {
+    //    $scope.groupedIndications = $scope.groupedIndicationsReceived;
+    //  } else {
+    //    $scope.groupedIndications = $scope.groupedIndicationsSent;
+    //  }
+    //};
 
     $scope.createChip = function(event, some) {
       switch(event.keyCode) {

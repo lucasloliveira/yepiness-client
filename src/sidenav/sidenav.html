@@ -7,24 +7,21 @@
         <span class="nickname" ng-if="user.nickname">@{{user.nickname}}</span>
       </div>
     </div>
-<!--<md-sidenav class="md-sidenav-left sidenav" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" layout-padding>-->
-  <!--<div layout="row" layout-align="start end" class="user-profile">-->
-    <!--<img class="picture" ng-src="{{user.image}}?type=normal"/>-->
-    <!--<div class="info">-->
-      <!--<span class="name">{{user.name}}</span>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div layout="column" class="categories">-->
-    <!--<span class="title">Categories</span>-->
-
-    <!--<ul class="list">-->
-      <!--<li class="item" ng-repeat="category in categories track by category.id">{{category.title}}</li>-->
-    <!--</ul>-->
   </div>
   <md-list class="list">
     <h2 class="list-title">Categories</h2>
-    <md-list-item class="list-item" ng-repeat="category in categories">
-      <p>{{ category.title }}</p>
-    </md-list-item>
+    <!--<md-list-item class="list-item" ng-repeat="category in categories">-->
+      <!--<p>{{ category.title }}</p>-->
+    <!--</md-list-item>-->
+
+    <md-radio-group ng-model="category" class="md-primary list-item">
+      <md-radio-button ng-value="undefined">
+        All<br/>
+      </md-radio-button>
+      <md-radio-button ng-repeat="category in categories"
+                       ng-value="category.title">
+        {{ category.title }}<br/>
+      </md-radio-button>
+    </md-radio-group>
   </md-list>
 </md-sidenav>

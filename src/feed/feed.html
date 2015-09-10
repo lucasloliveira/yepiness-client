@@ -40,7 +40,7 @@
     <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
             disabled="tab.disabled" flex layout-fill>
       <md-whiteframe class="yep-card md-whiteframe-z1" layout layout-padding
-                     ng-repeat="indication in groupedIndications">
+                     ng-repeat="indication in tab.indications">
         <div layout="column" flex>
           <div layout="row">
             <div flex="20">
