@@ -25,6 +25,7 @@
 
     $authProvider.configure({
       apiUrl: ENV.apiEndpoint,
+      omniauthWindowType: 'newWindow',
       authProviderPaths: {
         facebook: '/auth/facebook'
       }
