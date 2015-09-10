@@ -2,7 +2,6 @@
 
 .header-title {
   margin: 0;
-  position: absolute;
   text-align: center;
   width: 100%;
   color: $orange-yepiness;
@@ -39,4 +38,8 @@
     text-align: center;
     font-size: large;
   }
+}
+
+.margin-top-60 {
+  margin-top: 60px;
 }
