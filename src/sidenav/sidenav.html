@@ -14,12 +14,12 @@
       <!--<p>{{ category.title }}</p>-->
     <!--</md-list-item>-->
 
-    <md-radio-group ng-model="category" class="md-primary list-item">
-      <md-radio-button ng-value="undefined">
+    <md-radio-group ng-model="category" class="md-primary list-item" ng-change="changeCategory(category)">
+      <md-radio-button ng-value="undefined" >
         All<br/>
       </md-radio-button>
-      <md-radio-button ng-repeat="category in categories"
-                       ng-value="category.title">
+      <md-radio-button ng-repeat="category in categories track by category.id"
+                       ng-value="category">
         {{ category.title }}<br/>
       </md-radio-button>
     </md-radio-group>

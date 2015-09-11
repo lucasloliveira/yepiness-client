@@ -12,8 +12,12 @@
     .controller('SidenavCtrl', Sidenav);
 
   // @ngInject
-  function Sidenav($auth, $scope, categories) {
+  function Sidenav($rootScope, $scope, categories) {
     $scope.categories = categories.data;
+
+    $scope.changeCategory = function (category) {
+      $rootScope.$broadcast('filterCategory', category);
+    }
   }
 
 })();

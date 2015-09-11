@@ -19,6 +19,25 @@
       friends: []
     };
 
+    $scope.$on('filterCategory', function(event, category) {
+      $scope.category = category;
+      filterYeps();
+    });
+
+    var filterYeps = function() {
+      if($scope.category) {
+        $scope.tabs[0].indications = received.filter(function(yep) {
+          return yep.category.id === $scope.category.id;
+        });
+        $scope.tabs[1].indications = sent.filter(function(yep) {
+          return yep.category.id === $scope.category.id;
+        });
+      } else {
+        $scope.tabs[0].indications = received;
+        $scope.tabs[1].indications = sent;
+      }
+    };
+
     $scope.createChip = function(event, some) {
       switch(event.keyCode) {
         case 13:
@@ -79,7 +98,6 @@
 
     $scope.updateCategory = function(yep) {
       YepService.update(yep).success(function(response) {
-        console.log('success!');
       });
     };
 
@@ -93,11 +111,15 @@
       {title: 'My Indications', type: 'sent'}
     ];
 
+    var received = undefined;
     YepService.received().success(function(response) {
+      received = response;
       $scope.tabs[0].indications = response;
     });
 
+    var sent = undefined;
     YepService.sent().success(function(response) {
+      sent = response;
       $scope.tabs[1].indications = response;
     });
 

@@ -107,6 +107,13 @@ md-tabs {
   }
 }
 
+.category-title {
+  color: $orange-yepiness;
+  font-size: 32px;
+  font-family: 'Quicksand', 'Noto Sans', Arial, Helvetica, sans-serif;
+  margin: 28px 0 12px 20px;
+}
+
 .yep-card {
   background: $gray-card;
   margin: 22px;
@@ -118,6 +125,8 @@ md-tabs {
     }
 
     md-grid-list {
+      margin-top: 14px;
+
       md-grid-tile {
         background-position: center;
         background-size: cover;
@@ -157,7 +166,17 @@ md-tabs {
           padding: 10px;
         }
       }
-
+    }
+    .content {
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 30px;
+      
+      span {
+        color: $masala;
+        font-weight: bold;
+        font-style: normal;
+      }
     }
   }
 }
