@@ -30,7 +30,7 @@
           return yep.category.id === $scope.category.id;
         });
         $scope.tabs[1].indications = sent.filter(function(yep) {
-          return yep.category.id === $scope.category.id;
+          return yep.category !== undefined && yep.category.id === $scope.category.id;
         });
       } else {
         $scope.tabs[0].indications = received;
@@ -55,7 +55,7 @@
     $scope.create = function(){
       YepService.create($scope.newYep).success(function(response){
 
-        $scope.groupedIndicationsSent.add(response, 0);
+        $scope.tabs[1].indications.add(response, 0);
 
         $scope.newYep = {
           friends: []
@@ -97,7 +97,13 @@
     };
 
     $scope.updateCategory = function(yep) {
-      YepService.update(yep).success(function(response) {
+      YepService.updateCategory(yep).success(function(response) {
+      });
+    };
+
+    $scope.updateRating = function(yep, rating) {
+      YepService.updateRating(yep, rating).success(function(response) {
+        yep.rating = response.rating;
       });
     };
 
@@ -150,19 +156,19 @@
     //  }
     //};
 
-    $scope.createChip = function(event, some) {
-      switch(event.keyCode) {
-        case 13:
-          //TODO: Fix this workaround when possible
-          var last = $scope.newYep.friends.length - 1;
-          var newChip = $scope.newYep.friends[last];
-          if(!newChip.name) {
-            $scope.newYep.friends[last] = {
-              name: newChip
-            };
-          }
-      }
-    };
+    //$scope.createChip = function(event, some) {
+    //  switch(event.keyCode) {
+    //    case 13:
+    //      //TODO: Fix this workaround when possible
+    //      var last = $scope.newYep.friends.length - 1;
+    //      var newChip = $scope.newYep.friends[last];
+    //      if(!newChip.name) {
+    //        $scope.newYep.friends[last] = {
+    //          name: newChip
+    //        };
+    //      }
+    //  }
+    //};
 
     $scope.loadFriends = function($query){
       return $scope.user.friends.filter(function(friend){

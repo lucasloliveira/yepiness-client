@@ -14,10 +14,12 @@
       });
     };
 
-    this.update = function(yep) {
-      return $http.put(ENV.apiEndpoint + base, {
-        yep: yep
-      })
+    this.updateCategory = function(yep) {
+      return $http.put(ENV.apiEndpoint + base + '/' + yep.id + '/category/' + yep.category.id);
+    };
+
+    this.updateRating = function(yep, rating) {
+      return $http.put(ENV.apiEndpoint + base + '/' + yep.id + '/rating/' + rating);
     };
 
     this.sent = function() {
