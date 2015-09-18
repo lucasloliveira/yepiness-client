@@ -114,26 +114,22 @@ md-tabs {
   margin: 28px 0 12px 20px;
 }
 
+.empty-category {
+  margin: 28px 0 12px 20px;
+  color: $mirage;
+  font-weight: 100;
+  font-size: 16px;
+}
+
 .yep-card {
   background: $gray-card;
-  margin: 22px;
+  margin: 0 22px 22px 22px;
   div {
     img {
       max-width: 140px;
       width: 100%;
       margin: auto;
     }
-
-    md-grid-list {
-      margin-top: 14px;
-
-      md-grid-tile {
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
-    }
-
     .yep-content {
 
       margin-left: 26px;
@@ -167,6 +163,36 @@ md-tabs {
         }
       }
     }
+
+    md-grid-list {
+      max-width: 140px;
+      width: 140px;
+
+      md-grid-tile {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .rating {
+      font-size: 12px;
+      color: $mirage;
+    }
+
+    .rating-stars {
+      direction: rtl;
+      cursor: pointer;
+
+      i:focus {
+        outline: none;
+      }
+
+      i:hover:before, i:hover ~ i:before {
+        content: "\f005";
+      }
+    }
+
     .content {
       font-size: 12px;
       font-style: italic;

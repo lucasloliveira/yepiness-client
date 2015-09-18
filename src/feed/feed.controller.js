@@ -26,15 +26,15 @@
 
     var filterYeps = function() {
       if($scope.category) {
-        $scope.tabs[0].indications = received.filter(function(yep) {
+        $scope.tabs['received'].indications = received.filter(function(yep) {
           return yep.category.id === $scope.category.id;
         });
-        $scope.tabs[1].indications = sent.filter(function(yep) {
-          return yep.category.id === $scope.category.id;
+        $scope.tabs['sent'].indications = sent.filter(function(yep) {
+          return yep.category !== undefined && yep.category.id === $scope.category.id;
         });
       } else {
-        $scope.tabs[0].indications = received;
-        $scope.tabs[1].indications = sent;
+        $scope.tabs['received'].indications = received;
+        $scope.tabs['sent'].indications = sent;
       }
     };
 
@@ -55,7 +55,7 @@
     $scope.create = function(){
       YepService.create($scope.newYep).success(function(response){
 
-        $scope.groupedIndicationsSent.add(response, 0);
+        $scope.tabs['sent'].indications.add(response, 0);
 
         $scope.newYep = {
           friends: []
@@ -96,8 +96,20 @@
       $scope.newYep.image = undefined;
     };
 
+    $scope.remove = function(yep) {
+      YepService.remove(yep).success(function(response) {
+
+      });
+    };
+
     $scope.updateCategory = function(yep) {
-      YepService.update(yep).success(function(response) {
+      YepService.updateCategory(yep).success(function(response) {
+      });
+    };
+
+    $scope.updateRating = function(yep, rating) {
+      YepService.updateRating(yep, rating).success(function(response) {
+        yep.rating = response.rating;
       });
     };
 
@@ -106,21 +118,25 @@
     });
 
     /// YEPCONTROLLER METHODS
-    $scope.tabs = [
-      {title: 'Indications Received', type: 'received'},
-      {title: 'My Indications', type: 'sent'}
-    ];
+    $scope.tabs = {
+      received: {
+        title: 'Indications Received' 
+      },
+      sent: {
+        title: 'My Indications'
+      }
+    };
 
     var received = undefined;
     YepService.received().success(function(response) {
       received = response;
-      $scope.tabs[0].indications = response;
+      $scope.tabs['received'].indications = response;
     });
 
     var sent = undefined;
     YepService.sent().success(function(response) {
       sent = response;
-      $scope.tabs[1].indications = response;
+      $scope.tabs['sent'].indications = response;
     });
 
     var groupYeps = function(list) {
@@ -150,19 +166,19 @@
     //  }
     //};
 
-    $scope.createChip = function(event, some) {
-      switch(event.keyCode) {
-        case 13:
-          //TODO: Fix this workaround when possible
-          var last = $scope.newYep.friends.length - 1;
-          var newChip = $scope.newYep.friends[last];
-          if(!newChip.name) {
-            $scope.newYep.friends[last] = {
-              name: newChip
-            };
-          }
-      }
-    };
+    //$scope.createChip = function(event, some) {
+    //  switch(event.keyCode) {
+    //    case 13:
+    //      //TODO: Fix this workaround when possible
+    //      var last = $scope.newYep.friends.length - 1;
+    //      var newChip = $scope.newYep.friends[last];
+    //      if(!newChip.name) {
+    //        $scope.newYep.friends[last] = {
+    //          name: newChip
+    //        };
+    //      }
+    //  }
+    //};
 
     $scope.loadFriends = function($query){
       return $scope.user.friends.filter(function(friend){

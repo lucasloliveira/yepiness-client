@@ -30,16 +30,19 @@
         md-contact-name="name"
         md-contact-image="image"
         md-contact-email="email"
-        md-require-match
+        md-require-match="true"
+        md-highlight-flags="i"
         filter-selected="true"
         placeholder="Add a friend">
     </md-contact-chips>
     <md-button class="md-raised share-btn" ng-click="create()">Share</md-button>
   </div>
   <md-tabs md-dynamic-height md-border-bottom md-center-tabs="false" flex layout-fill>
-    <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
+    <md-tab ng-repeat="(key, tab) in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
             disabled="tab.disabled" flex layout-fill>
       <h4 class="category-title">{{category.title || 'All'}}</h4>
+
+      <p class="empty-category" ng-if="tab.indications.length === 0">There's no indication in this category</p>
 
       <md-whiteframe class="yep-card md-whiteframe-z1" layout layout-padding
                      ng-repeat="indication in tab.indications">
@@ -47,21 +50,6 @@
           <div layout="row">
             <div>
               <img class="indication-image" ng-src="{{ indication.image || '/images/yep_placeholder.png'}}">
-              <md-grid-list class="friends" md-cols="3" md-row-height="1:1">
-                <md-grid-tile
-                    ng-if="tab.type === 'sent'"
-                    ng-repeat="user in indication.users"
-                    ng-style="{'background-image': 'url({{user.image}})'}"
-                    md-colspan="1"
-                    md-rowspan="1">
-                </md-grid-tile>
-                <md-grid-tile
-                    ng-if="tab.type === 'received'"
-                    ng-style="{'background-image': 'url({{indication.user.image}})'}"
-                    md-colspan="1"
-                    md-rowspan="1">
-                </md-grid-tile>
-              </md-grid-list>
             </div>
             <div flex class="yep-content">
               <p class="title">{{indication.title}}</p>
@@ -72,6 +60,29 @@
               </div>
               <p class="description">{{indication.description}}</p>
               <a>{{indication.url}}</a>
+            </div>
+            <a><i ng-click="remove(indication)" class="fa fa-times close"></i></a>
+          </div>
+          <div layout="row" style="margin-top: 14px;">
+            <div layout="row" layout-align="end center">
+              <md-grid-list class="friends" md-cols="3" md-row-height="1:1">
+                <md-grid-tile
+                    ng-if="key === 'sent'"
+                    ng-repeat="user in indication.users"
+                    ng-style="{'background-image': 'url({{user.image}})'}"
+                    md-colspan="1"
+                    md-rowspan="1">
+                </md-grid-tile>
+                <md-grid-tile
+                    ng-if="key === 'received'"
+                    ng-style="{'background-image': 'url({{indication.user.image}})'}"
+                    md-colspan="1"
+                    md-rowspan="1">
+                </md-grid-tile>
+              </md-grid-list>
+            </div>
+            <div flex layout="row" layout-align="end center">
+              <span class="rating">Your rating: </span><span class="rating-stars"><i ng-repeat="star in [5, 4, 3, 2, 1]" ng-click="updateRating(indication, star)" class="fa" ng-class="{'fa-star': (star <= indication.rating), 'fa-star-o': (star > indication.rating)}" style="font-size: 16px; padding: 4px;"></i></span>
             </div>
           </div>
           <div layout="column" ng-if="indication.user">
