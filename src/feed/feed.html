@@ -42,6 +42,8 @@
             disabled="tab.disabled" flex layout-fill>
       <h4 class="category-title">{{category.title || 'All'}}</h4>
 
+      <p class="empty-category" ng-if="tab.indications.length === 0">There's no indication in this category</p>
+
       <md-whiteframe class="yep-card md-whiteframe-z1" layout layout-padding
                      ng-repeat="indication in tab.indications">
         <div layout="column" flex>
