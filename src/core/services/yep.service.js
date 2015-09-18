@@ -14,6 +14,10 @@
       });
     };
 
+    this.remove = function(yep) {
+      return $http.delete(ENV.apiEndpoint + base + '/' + yep.id);
+    };
+
     this.updateCategory = function(yep) {
       return $http.put(ENV.apiEndpoint + base + '/' + yep.id + '/category/' + yep.category.id);
     };

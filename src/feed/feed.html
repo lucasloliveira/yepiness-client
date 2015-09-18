@@ -38,7 +38,7 @@
     <md-button class="md-raised share-btn" ng-click="create()">Share</md-button>
   </div>
   <md-tabs md-dynamic-height md-border-bottom md-center-tabs="false" flex layout-fill>
-    <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
+    <md-tab ng-repeat="(key, tab) in tabs" label="{{tab.title}}" md-on-select="changeTab(tab)" active="tab.active"
             disabled="tab.disabled" flex layout-fill>
       <h4 class="category-title">{{category.title || 'All'}}</h4>
 
@@ -59,19 +59,20 @@
               <p class="description">{{indication.description}}</p>
               <a>{{indication.url}}</a>
             </div>
+            <a><i ng-click="remove(indication)" class="fa fa-times close"></i></a>
           </div>
           <div layout="row" style="margin-top: 14px;">
             <div layout="row" layout-align="end center">
               <md-grid-list class="friends" md-cols="3" md-row-height="1:1">
                 <md-grid-tile
-                    ng-if="tab.type === 'sent'"
+                    ng-if="key === 'sent'"
                     ng-repeat="user in indication.users"
                     ng-style="{'background-image': 'url({{user.image}})'}"
                     md-colspan="1"
                     md-rowspan="1">
                 </md-grid-tile>
                 <md-grid-tile
-                    ng-if="tab.type === 'received'"
+                    ng-if="key === 'received'"
                     ng-style="{'background-image': 'url({{indication.user.image}})'}"
                     md-colspan="1"
                     md-rowspan="1">
